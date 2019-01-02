@@ -49,9 +49,4 @@ class indexController extends Controller
         return view('index.index',$data);
     }
 
-    public function gitAdd(){
-        echo 'liRUIxiang';
-    }
-
-
 }
