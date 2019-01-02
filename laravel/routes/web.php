@@ -16,3 +16,10 @@ Route::get('/', function () {
 });
 
 Route::get('user/{id}', 'index\IndexController@index');
+
+
+
+Route::get('add', 'index\IndexController@add');
+Route::get('delete/{id}', 'index\IndexController@delete');
+Route::get('update/{id}', 'index\IndexController@update');
+Route::get('select', 'index\IndexController@select');
