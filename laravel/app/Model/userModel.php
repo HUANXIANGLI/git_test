@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class userModel extends Model
 {
-    public $table='shop_user';
+    public $table='laravel_user';
     public $timestamps=false;
 }

@@ -14,12 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+//用户注册
+Route::any('userAdd', 'User\UserController@userAdd');
 
-Route::get('user/{id}', 'index\IndexController@index');
+//用户登录
+Route::any('loginAdd', 'User\UserController@loginAdd');
 
-
-
-Route::get('add', 'index\IndexController@add');
-Route::get('delete/{id}', 'index\IndexController@delete');
-Route::get('update/{id}', 'index\IndexController@update');
-Route::get('select', 'index\IndexController@select');
+//个人中心
+Route::get('center','User\UserController@center');
