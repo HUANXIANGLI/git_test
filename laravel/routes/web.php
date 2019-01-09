@@ -23,7 +23,7 @@ Route::any('loginAdd', 'User\UserController@loginAdd');
 //个人中心
 Route::any('center','User\UserController@center');
 
-//商品主页删除
+//退出
 Route::any('loginQuit','User\UserController@loginQuit');
 
 
@@ -39,8 +39,12 @@ Route::any('goodsDetails/{goods_id}','Goods\GoodsController@goodsDetails')->midd
 
 
 
-//购物车添加
+
+//购物车添加1
 Route::any('cartAdd/{goods_id}','Cart\CartController@cartAdd')->middleware('check.login.token');
+
+//购物车添加2
+Route::any('cartAdd2','Cart\CartController@cartAdd2')->middleware('check.login.token');
 
 //购物车删除
 Route::any('cartDel/{goods_id}','Cart\CartController@cartDel')->middleware('check.login.token');

@@ -4,8 +4,8 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GoodsModel extends Model
+class CartModel extends Model
 {
-    public $table='laravel_goods';
+    public $table='laravel_cart';
     public $timestamps=false;
 }

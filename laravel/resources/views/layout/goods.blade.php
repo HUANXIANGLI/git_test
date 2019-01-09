@@ -44,9 +44,11 @@
                     <?php if(empty($_COOKIE['u_id'])){ ?>
                         <li><a href="/loginAdd">登录</a></li>
                         <li><a href="/userAdd">注册</a></li>
+                    <li><a href=”#” onClick="javascript :history.back(-1);">返回上一页</a></li>
                     <?php }else{ ?>
                         <li ><a href="javascript:;"><?php echo 'UID: '.$_COOKIE['u_id'] . ' 欢迎回来';?></a></li>
                         <li><a href="/loginQuit">退出</a></li>
+                    <li><a href=”#” onClick="javascript :history.back(-1);">返回上一页</a></li>
                     <?php }?>
                 </ul>
             </div><!--/.nav-collapse -->
@@ -55,9 +57,7 @@
 </div>
 
 @section('footer')
-
     <script src="{{URL::asset('/js/jquery-1.12.4.min.js')}}"></script>
-    <script src="{{URL::asset('/bootstrap/js/bootstrap.min.js')}}"></script>
 @show
 </body>
 </html>

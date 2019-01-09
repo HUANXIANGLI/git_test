@@ -90,6 +90,8 @@ class UserController extends Controller
                     setcookie('token',$token,time()+86400,'/center','',false,true);
 
                     request()->session()->put('u_token',$token);
+                    request()->session()->put('u_id',$uid);
+
                     header('refresh:2,url=/center');
                     echo '注册成功.页面跳转中';
                 } else {
@@ -133,6 +135,7 @@ class UserController extends Controller
                         setcookie('token',$token,time()+86400,'/center','',false,true);
 
                         request()->session()->put('u_token',$token);
+                        request()->session()->put('u_id',$u_pwd['u_id']);
 
                         header('refresh:2,url=/center');
                         echo '登录成功.正在跳转主页面.请耐心等待。亲';

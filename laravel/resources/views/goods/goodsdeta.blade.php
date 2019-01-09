@@ -1,17 +1,17 @@
-@extends('layouts.bst')
-
+@extends('layout.goods')
+@section('title') {{$title}}    @endsection
 @section('content')
     <div class="container">
         <h1>{{$goods->goods_name}}</h1>
 
-        <span> 价格： {{$goods->price / 100}}</span>
+        <span> 价格： {{$goods->goods_price / 100}}</span>
 
 
         <form class="form-inline">
             <div class="form-group">
                 <label class="sr-only" for="goods_num">Amount (in dollars)</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="goods_num" value="1">
+                    <input type="text" class="form-control" id="goods_num" placeholder="数量" >
                 </div>
             </div>
             <input type="hidden" id="goods_id" value="{{$goods->goods_id}}">

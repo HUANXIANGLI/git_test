@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Cart;
 
+use App\Model\CartModel;
 use App\Model\GoodsModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -75,6 +76,52 @@ class CartController extends Controller
             //不在购物车中
             die("商品不在购物车中");
         }
+    }
+
+    /**
+     * 购物车添加
+     * @return array
+     * liruixiang
+     */
+    public function cartAdd2(){
+        $goods_id = request()->input('goods_id');
+        $num = request()->input('c_num');
+        //var_dump($goods_id);
+        //var_dump($num);
+        //检查库存
+        $store_num = GoodsModel::where(['goods_id'=>$goods_id])->value('goods_store');
+        if($store_num<=0){
+            $response = [
+                'errno' => 5001,
+                'msg'   => '库存不足'
+            ];
+            return $response;
+        }
+
+        //写入购物车表
+        $data = [
+            'goods_id'  => $goods_id,
+            'c_num'       => $num,
+            'c_ctime'  => time(),
+            'uid'       => session()->get('u_id'),
+            'session_token' => session()->get('u_token')
+        ];
+
+        $cid = CartModel::insertGetId($data);
+        if(!$cid){
+            $response = [
+                'errno' => 5002,
+                'msg'   => '添加购物车失败，请重试'
+            ];
+            return $response;
+        }
+
+
+        $response = [
+            'error' => 0,
+            'msg'   => '添加成功'
+        ];
+        return $response;
     }
 
 }

@@ -53,7 +53,8 @@ class GoodsController extends Controller
         }
 
         $data = [
-            'goods' => $goods
+            'goods' => $goods,
+            'title' => '商品详情'
         ];
         return view('goods.goodsdeta',$data);
     }
