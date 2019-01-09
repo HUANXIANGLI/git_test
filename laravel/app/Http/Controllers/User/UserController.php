@@ -9,6 +9,35 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     /**
+     * 主页面
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * lirunxiang
+     */
+    public function center(){
+        /*
+        if($_COOKIE['token'] != request()->session()->get('u_token')){
+            die("非法请求");
+        }else{
+            echo '正常请求';
+        }
+
+
+        echo 'u_token: '.request()->session()->get('u_token'); echo '</br>';
+        //echo '<pre>';print_r($request->session()->get('u_token'));echo '</pre>';
+
+        echo '<pre>';print_r($_COOKIE);echo '</pre>';
+        die;
+        */
+        if(empty($_COOKIE['u_id'])){
+            header('Refresh:2;url=/loginAdd');
+            echo '请先登录';
+            exit;
+        }else{
+            echo 'UID: '.$_COOKIE['u_id'] . ' 欢迎回来';
+        }
+    }
+
+    /**
      * 注册跳转
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * liruixiang
@@ -56,7 +85,11 @@ class UserController extends Controller
 
                 $uid = userModel::insertGetId($data);
                 if ($uid) {
-                    setcookie('uid',$uid,time()+86400,'/','www.cms.com',false,true);
+                    $token = substr(md5(time().mt_rand(1,99999)),10,10);
+                    setcookie('u_id',$uid,time()+86400,'/','',false,true);
+                    setcookie('token',$token,time()+86400,'/center','',false,true);
+
+                    request()->session()->put('u_token',$token);
                     header('refresh:2,url=/center');
                     echo '注册成功.页面跳转中';
                 } else {
@@ -96,8 +129,8 @@ class UserController extends Controller
                 if($u_pwd){
                     if(password_verify($pwd,$u_pwd['u_pwd'])){
                         $token = substr(md5(time().mt_rand(1,99999)),10,10);
-                        setcookie('u_id',$u_pwd['u_id'],time()+86400,'/','www.cms.com',false,true);
-                        setcookie('token',$token,time()+86400,'/user','',false,true);
+                        setcookie('u_id',$u_pwd['u_id'],time()+86400,'/','',false,true);
+                        setcookie('token',$token,time()+86400,'/center','',false,true);
 
                         request()->session()->put('u_token',$token);
 
@@ -120,30 +153,14 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * 主页面
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * lirunxiang
-     */
-    public function center(){
-        if($_COOKIE['token'] != request()->session()->get('u_token')){
-            die("非法请求");
-        }else{
-            echo '正常请求';
-        }
+    public function loginQuit(){
+        setcookie('u_id',null);
+        setcookie('token',null);
+        request()->session()->pull('u_token',null);
 
-
-        echo 'u_token: '.request()->session()->get('u_token'); echo '</br>';
-        //echo '<pre>';print_r($request->session()->get('u_token'));echo '</pre>';
-
-        echo '<pre>';print_r($_COOKIE);echo '</pre>';
-        die;
-        if(empty($_COOKIE['u_id'])){
-            header('Refresh:2;url=/loginAdd');
-            echo '请先登录';
-            exit;
-        }else{
-            echo 'UID: '.$_COOKIE['u_id'] . ' 欢迎回来';
-        }
+        header('refresh:2,url=/loginAdd');
     }
+
+
+
 }

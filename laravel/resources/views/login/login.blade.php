@@ -15,6 +15,8 @@
                 <input type="checkbox" value="remember-me">记住密码
             </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <br/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" style="width:25%;float: left">登录</button>
+        <a href="{{url('userAdd')}}" class="btn btn-lg btn-primary btn-block" style="width:25%;float: right">注册</a>
     </form>
 @endsection
