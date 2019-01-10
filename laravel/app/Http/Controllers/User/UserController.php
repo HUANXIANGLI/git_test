@@ -162,6 +162,7 @@ class UserController extends Controller
         request()->session()->pull('u_token',null);
 
         header('refresh:2,url=/loginAdd');
+    echo '退出成功，正在跳转登录页面';
     }
 
 

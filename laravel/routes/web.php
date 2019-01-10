@@ -29,7 +29,7 @@ Route::any('loginQuit','User\UserController@loginQuit');
 
 
 //商品主页
-Route::any('goodsList','Goods\GoodsController@goodsList')->middleware('check.login.token');
+Route::any('goodsList','Goods\GoodsController@goodsList');
 
 //商品主页删除
 Route::any('goodsDel/{goods_id}','Goods\GoodsController@goodsDel')->middleware('check.login.token');
@@ -40,13 +40,28 @@ Route::any('goodsDetails/{goods_id}','Goods\GoodsController@goodsDetails')->midd
 
 
 
+//购物车展示
+Route::any('cartList','Cart\CartController@cartList')->middleware('check.login.token');
+
 //购物车添加1
 Route::any('cartAdd/{goods_id}','Cart\CartController@cartAdd')->middleware('check.login.token');
 
 //购物车添加2
 Route::any('cartAdd2','Cart\CartController@cartAdd2')->middleware('check.login.token');
 
-//购物车删除
+//购物车删除1
 Route::any('cartDel/{goods_id}','Cart\CartController@cartDel')->middleware('check.login.token');
+
+//购物车删除2
+Route::any('cartDel2/{c_id}','Cart\CartController@cartDel2')->middleware('check.login.token');
+
+
+
+
+//提交订单
+Route::any('orderAdd','Order\OrderController@orderAdd')->middleware('check.login.token');
+
+//提交订单
+Route::any('orderList','Order\OrderController@orderList')->middleware('check.login.token');
 
 

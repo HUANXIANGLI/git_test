@@ -25,8 +25,10 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">分类1</a></li>
-                    <li><a href="#">分类2</a></li>
+                    {{--class="active"--}}
+                    <li><a href="/cartList">购物车</a></li>
+                    <li><a href="/goodsList">商品页面</a></li>
+                    <li><a href="/orderList">订单页面</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -44,11 +46,9 @@
                     <?php if(empty($_COOKIE['u_id'])){ ?>
                         <li><a href="/loginAdd">登录</a></li>
                         <li><a href="/userAdd">注册</a></li>
-                    <li><a href=”#” onClick="javascript :history.back(-1);">返回上一页</a></li>
                     <?php }else{ ?>
                         <li ><a href="javascript:;"><?php echo 'UID: '.$_COOKIE['u_id'] . ' 欢迎回来';?></a></li>
                         <li><a href="/loginQuit">退出</a></li>
-                    <li><a href=”#” onClick="javascript :history.back(-1);">返回上一页</a></li>
                     <?php }?>
                 </ul>
             </div><!--/.nav-collapse -->

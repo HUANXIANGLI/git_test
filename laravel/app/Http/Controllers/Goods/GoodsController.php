@@ -15,6 +15,7 @@ class GoodsController extends Controller
     public function goodsList(){
         $res = GoodsModel::all();
         //print_r($res);exit;
+        //var_dump($res);exit;
         $data=[
             'title'=>'商品主页',
             'data'=>$res
@@ -51,7 +52,6 @@ class GoodsController extends Controller
             echo '商品不存在,正在跳转至首页';
             exit;
         }
-
         $data = [
             'goods' => $goods,
             'title' => '商品详情'
