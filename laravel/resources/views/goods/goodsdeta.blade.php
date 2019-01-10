@@ -4,8 +4,8 @@
     <div class="container">
         <h1>{{$goods->goods_name}}</h1>
 
-        <span> 价格： {{$goods->goods_price / 100}}</span>
-
+        <span> 价格： {{$goods->goods_price / 100}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span> 数量： {{$goods->goods_store}}</span>
 
         <form class="form-inline">
             <div class="form-group">
