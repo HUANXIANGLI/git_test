@@ -26,21 +26,14 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     {{--class="active"--}}
-                    <li><a href="/cartList">购物车</a></li>
                     <li><a href="/goodsList">商品页面</a></li>
-                    <li><a href="/orderList">订单页面</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">我的订单</a></li>
-                            <li><a href="#">待收货</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                            <li><a href="/orderList">订单页面</a></li>
+                            <li><a href="/cartList">购物车</a></li>
                         </ul>
                     </li>
                     <?php if(empty($_COOKIE['u_id'])){ ?>
@@ -58,6 +51,7 @@
 
 @section('footer')
     <script src="{{URL::asset('/js/jquery-1.12.4.min.js')}}"></script>
+    <script src="{{URL::asset('/bootstrap/js/bootstrap.min.js')}}"></script>
 @show
 </body>
 </html>

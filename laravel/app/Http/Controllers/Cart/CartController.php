@@ -24,14 +24,15 @@ class CartController extends Controller
      * liruixiang
      */
     public function cartList(){
-        //var_dump($this->u_id);exit;
+        /*
+            var_dump($this->u_id);exit;
+            var_dump($cart_goods);exit;
+            if(empty($cart_goods)){
+                header('refresh:2,url=/goodsList');
+                die("购物车是空的");
+            }
+        */
         $cart_goods = CartModel::where(['uid'=>$this->u_id])->get()->toArray();
-        //var_dump($cart_goods);exit;
-        if(empty($cart_goods)){
-            header('Refresh:2;url=/goodList');
-            die("购物车是空的");
-        }
-
         if($cart_goods){
             //获取商品最新信息
             foreach($cart_goods as $k=>$v){
@@ -45,6 +46,11 @@ class CartController extends Controller
                     $data[] = $goods_info;
             }
         }
+
+        if(empty($data)){
+            $data=[];
+        }
+
         //var_dump($data);exit;
         $list=[
             'title'=>'购物车页面',

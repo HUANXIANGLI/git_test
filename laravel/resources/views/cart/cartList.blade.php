@@ -17,7 +17,7 @@
                 <td>{{$v->c_id}}</td>
                 <td>{{$v->goods_name}}</td>
                 <td>{{$v->c_num}}</td>
-                <td>￥<p style="color:red;">{{$v->goods_price}}元</p></td>
+                <td><p style="color:red;">{{$v->goods_price}}元</p></td>
                 <td>{{date("Y-m-d H:i:s",$v->c_ctime)}}</td>
                 <td><li class="btn"><a href="/cartDel2/{{$v['c_id']}}">删除</a></li></td>
             </tr>
