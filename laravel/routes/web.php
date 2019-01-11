@@ -70,4 +70,7 @@ Route::any('orderDel/{o_id}','Order\OrderController@orderDel')->middleware('chec
 //支付订单
 Route::any('orderPay/{o_id}','Order\OrderController@orderPay')->middleware('check.login.token');
 
+//
+Route::any('Pay','Order\OrderController@pay');
+
 
