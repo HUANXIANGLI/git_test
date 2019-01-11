@@ -22,7 +22,7 @@
                         <li class="btn"><a href="/orderDel/{{$v->o_id}}">删除订单</a></li>||
                         <li class="btn"><a href="/orderPay/{{$v->o_id}}">支付订单</a></li>
                     @elseif($v['status']==2)
-                        <li class="btn"><a href="/orderDel/{{$v->o_id}}">取消订单----不返回</a></li>||
+                        <li class="btn"><a href="/orderDel/{{$v->o_id}}">取消订单--不返回款项</a></li>||
                         <li class="btn"><a href="javascript:;">已支付</a></li>
                     @endif
                 </td>

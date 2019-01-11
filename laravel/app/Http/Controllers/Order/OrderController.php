@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Order;
 use App\Model\CartModel;
 use App\Model\GoodsModel;
 use App\Model\OrderModel;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,6 +18,17 @@ class OrderController extends Controller
             $this->u_id = session()->get('u_id');
             return $next($request);
         });
+    }
+
+    public function pay(){
+        $url='http://www.cms.laravel.com';
+        $client=new Client([
+            'base_uri'=>$url,
+            'timeout'=>2.0,
+        ]);
+
+        $response=$client->request('GET','.order.php');
+        echo $response->getBody();
     }
 
     /**
