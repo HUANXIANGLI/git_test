@@ -70,7 +70,9 @@ Route::any('orderDel/{o_id}','Order\OrderController@orderDel')->middleware('chec
 //支付订单
 Route::any('orderPay/{o_id}','Order\OrderController@orderPay')->middleware('check.login.token');
 
-//
+//跳转网址
 Route::any('Pay','Order\OrderController@pay');
+Route::get('/payTest/{o_id}','Pay\AlipayController@test');         //测试
+Route::post('payNotify','Pay\AlipayController@notify');        //支付宝支付 通知回调
 
 
