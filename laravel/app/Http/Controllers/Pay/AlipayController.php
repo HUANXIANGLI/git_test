@@ -9,10 +9,16 @@ class AlipayController extends Controller
 {
 
     //
-    public $app_id = '2016091900549952';
-    public $gate_way = 'https://openapi.alipaydev.com/gateway.do';
-    public $notify_url = 'http://www.cms.com/payTest/';
+    public $app_id;
+    public $gate_way;
+    public $notify_url;
     public $rsaPrivateKeyFilePath = './key/priv.key';
+
+    public function __construct(){
+        $this->app_id = env('PAT_ID');
+        $this->gate_way = env('PAY_WAY');
+        $this->notify_url = env('PAY_URL');
+    }
 
     public function test($o_id)
     {
