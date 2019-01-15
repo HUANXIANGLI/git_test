@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Pay;
 
+use App\Model\OrderModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,11 +23,12 @@ class AlipayController extends Controller
 
     public function test($o_id)
     {
+        $order=OrderModel::where(['o_id'=>$o_id])->first();
 
         $bizcont = [
             'subject'           => 'ancsd'. mt_rand(1111,9999).str_random(6),
-            'out_trade_no'      => 'oid'.date('YmdHis').mt_rand(1111,2222),
-            'total_amount'      => 0.01,
+            'out_trade_no'      => $o_id,
+            'total_amount'      => $order['o_amount']/100,
             'product_code'      => 'QUICK_WAP_WAY',
 
         ];
@@ -51,6 +53,8 @@ class AlipayController extends Controller
         }
         $url = rtrim($param_str,'&');
         $url = $this->gate_way . $url;
+
+
         header("Location:".$url);
     }
 
@@ -129,3 +133,8 @@ class AlipayController extends Controller
         return $data;
     }
 }
+
+
+
+
+

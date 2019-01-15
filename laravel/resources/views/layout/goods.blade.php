@@ -29,17 +29,17 @@
                     <li><a href="/goodsList">商品页面</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                            <li><a href="/orderList">订单页面</a></li>
-                            <li><a href="/cartList">购物车</a></li>
-                        </ul>
-                    </li>
                     <?php if(empty($_COOKIE['u_id'])){ ?>
                         <li><a href="/loginAdd">登录</a></li>
                         <li><a href="/userAdd">注册</a></li>
                     <?php }else{ ?>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                <li><a href="/orderList">订单页面</a></li>
+                                <li><a href="/cartList">购物车</a></li>
+                            </ul>
+                        </li>
                         <li ><a href="javascript:;"><?php echo 'UID: '.$_COOKIE['u_id'] . ' 欢迎回来';?></a></li>
                         <li><a href="/loginQuit">退出</a></li>
                     <?php }?>
