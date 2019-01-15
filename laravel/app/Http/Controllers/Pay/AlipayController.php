@@ -24,16 +24,11 @@ class AlipayController extends Controller
         $this->return_url = env('RETURN_PAY_URL');
     }
 
-    /**
-     * 订单支付
-     * @param $oid
-     */
     public function pay($o_id)
     {
-
         //验证订单状态 是否已支付 是否是有效订单
         $order_info = OrderModel::where(['o_id'=>$o_id])->first()->toArray();
-
+//var_dump($order_info);exit;
         //判断订单是否已被支付
         if($order_info['is_pay']==1){
             header('refresh:2,url=/orderList');
@@ -44,8 +39,6 @@ class AlipayController extends Controller
             header('refresh:2,url=/orderList');
             die("订单已被删除，无法支付");
         }
-
-
 
         //业务参数
         $bizcont = [
@@ -81,13 +74,14 @@ class AlipayController extends Controller
         $url = rtrim($param_str,'&');
         $url = $this->gate_way . $url;
         header("Location:".$url);
-    }
 
-    public function rsaSign($params) {
+    }
+    public function rsaSign($params)
+    {
         return $this->sign($this->getSignContent($params));
     }
-
-    protected function sign($data) {
+    protected function sign($data)
+    {
 
         $priKey = file_get_contents($this->rsaPrivateKeyFilePath);
         $res = openssl_get_privatekey($priKey);
@@ -96,14 +90,14 @@ class AlipayController extends Controller
 
         openssl_sign($data, $sign, $res, OPENSSL_ALGO_SHA256);
 
-        if(!$this->checkEmpty($this->rsaPrivateKeyFilePath)){
+        if (!$this->checkEmpty($this->rsaPrivateKeyFilePath)) {
             openssl_free_key($res);
         }
         $sign = base64_encode($sign);
         return $sign;
     }
-
-    public function getSignContent($params) {
+    public function getSignContent($params)
+    {
         ksort($params);
         $stringToBeSigned = "";
         $i = 0;
@@ -124,8 +118,8 @@ class AlipayController extends Controller
         unset ($k, $v);
         return $stringToBeSigned;
     }
-
-    protected function checkEmpty($value) {
+    protected function checkEmpty($value)
+    {
         if (!isset($value))
             return true;
         if ($value === null)
@@ -135,14 +129,14 @@ class AlipayController extends Controller
 
         return false;
     }
-
     /**
      * 转换字符集编码
      * @param $data
      * @param $targetCharset
      * @return string
      */
-    function characet($data, $targetCharset) {
+    function characet($data, $targetCharset)
+    {
 
         if (!empty($data)) {
             $fileType = 'UTF-8';
@@ -154,76 +148,61 @@ class AlipayController extends Controller
 
         return $data;
     }
-
     /**
-     * 支付宝同步通知回调
+     * 同步
      */
     public function aliReturn()
     {
         header('Refresh:2;url=/orderList');
         echo "订单： ".$_GET['out_trade_no'] . ' 支付成功，正在跳转';
-//        echo '<pre>';print_r($_GET);echo '</pre>';die;
-//        //验签 支付宝的公钥
-//        if(!$this->verify($_GET)){
-//            die('簽名失敗');
-//        }
-//
-//        //验证交易状态
-////        if($_GET['']){
-////
-////        }
-////
-//
-//        //处理订单逻辑
-//        $this->dealOrder($_GET);
-    }
 
+    }
     /**
      * 支付宝异步通知
      */
     public function aliNotify()
     {
+        echo '111111111';exit;
         $data = json_encode($_POST);
-        $log_str = '>>>> '.date('Y-m-d H:i:s') . $data . "<<<<\n\n";
+        $log_str = '>>>> ' . date('Y-m-d H:i:s') . $data . "<<<<\n\n";
         //记录日志
-        file_put_contents('logs/alipay.logs',$log_str,FILE_APPEND);
+        file_put_contents('logs/alipay.log', $log_str, FILE_APPEND);
         //验签
         $res = $this->verify($_POST);
 
         $log_str = '>>>> ' . date('Y-m-d H:i:s');
-        if($res === false){
+        if ($res === false) {
             //记录日志 验签失败
             $log_str .= " Sign Failed!<<<<< \n\n";
-            file_put_contents('logs/alipay.log',$log_str,FILE_APPEND);
-        }else{
+            file_put_contents('logs/alipay.log', $log_str, FILE_APPEND);
+        } else {
             $log_str .= " Sign OK!<<<<< \n\n";
-            file_put_contents('logs/alipay.log',$log_str,FILE_APPEND);
+            file_put_contents('logs/alipay.log', $log_str, FILE_APPEND);
         }
 
         //验证订单交易状态
-        if($_POST['trade_status']=='TRADE_SUCCESS'){
+        if ($_POST['trade_status'] == 'TRADE_SUCCESS') {
             //更新订单状态
             $oid = $_POST['out_trade_no'];     //商户订单号
             $info = [
-                'is_pay'        => 1,       //支付状态  0未支付 1已支付
-                'pay_amount'    => $_POST['total_amount'] * 100,    //支付金额
-                'pay_time'      => strtotime($_POST['gmt_payment']), //支付时间
-                'plat_oid'      => $_POST['trade_no'],      //支付宝订单号
-                'plat'          => 1,      //平台编号 1支付宝 2微信
-                'status'        =>2
+                'is_pay' => 1,       //支付状态  0未支付 1已支付
+                'pay_amount' => $_POST['total_amount'] * 100,    //支付金额
+                'pay_time' => strtotime($_POST['gmt_payment']), //支付时间
+                'plat_oid' => $_POST['trade_no'],      //支付宝订单号
+                'plat' => 1,      //平台编号 1支付宝 2微信
+                'status'=>2
             ];
 
-            OrderModel::where(['oid'=>$oid])->update($info);
+            OrderModel::where(['oid' => $oid])->update($info);
         }
-
         //处理订单逻辑
         $this->dealOrder($_POST);
 
         echo 'success';
     }
-
     //验签
-    function verify($params) {
+    function verify($params)
+    {
         $sign = $params['sign'];
         $params['sign_type'] = null;
         $params['sign'] = null;
@@ -240,25 +219,39 @@ class AlipayController extends Controller
 
         //调用openssl内置方法验签，返回bool值
 
-        $result = (openssl_verify($this->getSignContent($params), base64_decode($sign), $res, OPENSSL_ALGO_SHA256)===1);
+        $result = (openssl_verify($this->getSignContent($params), base64_decode($sign), $res, OPENSSL_ALGO_SHA256) === 1);
         openssl_free_key($res);
 
         return $result;
     }
 
-    /**
-     * 处理订单逻辑 更新订单 支付状态 更新订单支付金额 支付时间
-     * @param $data
-     */
-    public function dealOrder($data)
-    {
 
-
-        //加积分
-
-        //减库存
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -72,7 +72,7 @@ Route::any('/orderPay/{o_id}','Order\OrderController@orderPay')->middleware('che
 
 //跳转网址
 Route::any('/Pay/{o_id}','Pay\AlipayController@pay');
-Route::post('/aliNotify','Pay\AlipayController@aliNotify');        //支付宝支付 异步通知回调
+Route::any('/aliNotify','Pay\AlipayController@aliNotify');        //支付宝支付 异步通知回调
 Route::any('/aliReturn','Pay\AlipayController@aliReturn');        //支付宝支付 同步通知回调
 
 
