@@ -162,7 +162,6 @@ class AlipayController extends Controller
      */
     public function aliNotify()
     {
-        echo '111111111';exit;
         $data = json_encode($_POST);
         $log_str = '>>>> ' . date('Y-m-d H:i:s') . $data . "<<<<\n\n";
         //记录日志
