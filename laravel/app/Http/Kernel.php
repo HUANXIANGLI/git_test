@@ -4,6 +4,7 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\CheckLoginToken;
+use App\Http\Middleware\Auth;
 
 class Kernel extends HttpKernel
 {
@@ -38,10 +39,16 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+        'log.click' =>[
+            clickLog::class
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',
         ],
+
+
     ];
 
     /**
@@ -62,5 +69,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         'check.login.token' => CheckLoginToken::class,
+        'Auth' => Auth::class,
     ];
 }
