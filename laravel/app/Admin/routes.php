@@ -12,4 +12,8 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
 
+    $router->resource('/goods',GoodsController::class);
+    $router->resource('/users',UsersController::class);
+
+
 });
