@@ -14,6 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//后台
+Auth::routes();
+
+//后台
+Route::get('/home', 'HomeController@index')->name('home');
+
 //用户注册
 Route::any('/userAdd', 'User\UserController@userAdd');
 
@@ -75,8 +82,6 @@ Route::any('/Pay/{o_id}','Pay\AlipayController@pay');
 Route::any('/aliNotify','Pay\AlipayController@aliNotify');        //支付宝支付 异步通知回调
 Route::any('/aliReturn','Pay\AlipayController@aliReturn');        //支付宝支付 同步通知回调
 
+//上传文件
+Route::any('/upload','User\UserController@uploadAdd');
 
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

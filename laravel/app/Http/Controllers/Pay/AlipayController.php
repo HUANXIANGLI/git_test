@@ -24,6 +24,9 @@ class AlipayController extends Controller
         $this->return_url = env('RETURN_PAY_URL');
     }
 
+    /**
+     * @param $o_id
+     */
     public function pay($o_id)
     {
         //验证订单状态 是否已支付 是否是有效订单
@@ -76,6 +79,11 @@ class AlipayController extends Controller
         header("Location:".$url);
 
     }
+
+    /**
+     * @param $params
+     * @return string
+     */
     public function rsaSign($params)
     {
         return $this->sign($this->getSignContent($params));
@@ -96,6 +104,11 @@ class AlipayController extends Controller
         $sign = base64_encode($sign);
         return $sign;
     }
+
+    /**
+     * @param $params
+     * @return string
+     */
     public function getSignContent($params)
     {
         ksort($params);
@@ -118,6 +131,11 @@ class AlipayController extends Controller
         unset ($k, $v);
         return $stringToBeSigned;
     }
+
+    /**
+     * @param $value
+     * @return bool
+     */
     protected function checkEmpty($value)
     {
         if (!isset($value))
@@ -129,6 +147,7 @@ class AlipayController extends Controller
 
         return false;
     }
+
     /**
      * 转换字符集编码
      * @param $data
@@ -148,6 +167,7 @@ class AlipayController extends Controller
 
         return $data;
     }
+
     /**
      * 同步
      */
@@ -157,6 +177,7 @@ class AlipayController extends Controller
         echo "订单： ".$_GET['out_trade_no'] . ' 支付成功，正在跳转';
 
     }
+
     /**
      * 支付宝异步通知
      */
@@ -199,6 +220,7 @@ class AlipayController extends Controller
 
         echo 'success';
     }
+
     //验签
     function verify($params)
     {

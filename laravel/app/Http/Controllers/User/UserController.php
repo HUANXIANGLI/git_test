@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+
     /**
      * 主页面
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -156,15 +157,39 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * 退出
+     * liruixiang
+     */
     public function loginQuit(){
         setcookie('u_id',null);
         setcookie('token',null);
         request()->session()->pull('u_token',null);
 
         header('refresh:2,url=/loginAdd');
-    echo '退出成功，正在跳转登录页面';
+        echo '退出成功，正在跳转登录页面';
     }
 
-
-
+    /**
+     * pdf文件上传
+     *liruixiang
+     */
+    public function uploadAdd(){
+        if(request()->isMethod('post')){
+            $pdf = request()->file('pdf');
+            $ext  = $pdf->extension();
+            if($ext != 'pdf'){
+                die("请上传PDF格式");
+            }
+            $res = $pdf->storeAs(date('Ymd'),str_random(5) . '.pdf');
+            if($res){
+                echo '上传成功';
+            }
+        }else{
+            $data=[
+                'title'=>'文件上传pdf'
+            ];
+            return view('goods.upload',$data);
+        }
+    }
 }
