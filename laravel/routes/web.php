@@ -85,3 +85,23 @@ Route::any('/aliReturn','Pay\AlipayController@aliReturn');        //支付宝支
 //上传文件
 Route::any('/upload','User\UserController@uploadAdd');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//考试登录
+Route::any('/index','index\indexController@index');
+
+//考试修改密码
+Route::any('/update','index\indexController@update');
+
