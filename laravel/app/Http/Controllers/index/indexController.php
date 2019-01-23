@@ -5,6 +5,7 @@ namespace App\Http\Controllers\index;
 use App\Model\userModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class indexController extends Controller
 {
@@ -23,6 +24,9 @@ class indexController extends Controller
                 'u_name'=>$user,
                 'u_pwd'=>$pwd
             ];
+
+            $value = Cache::get('key');
+            var_dump($value);exit;
             $app=userModel::where($where)->first();
             if($app){
                 header('refresh:2,url=/index');
@@ -35,6 +39,7 @@ class indexController extends Controller
             return view('index.index');
         }
     }
+
 
     public function update(){
         if(request()->isMethod('post')){
