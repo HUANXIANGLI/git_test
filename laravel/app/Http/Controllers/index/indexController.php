@@ -25,8 +25,6 @@ class indexController extends Controller
                 'u_pwd'=>$pwd
             ];
 
-            $value = Cache::get('key');
-            var_dump($value);exit;
             $app=userModel::where($where)->first();
             if($app){
                 header('refresh:2,url=/index');
@@ -36,7 +34,10 @@ class indexController extends Controller
                 echo '登录失败';
             }
         }else{
-            return view('index.index');
+            $data=[
+                'title'=> '考试登录缓存'
+            ];
+            return view('index.index',$data);
         }
     }
 
@@ -85,7 +86,10 @@ class indexController extends Controller
                 echo '用户名或密码不正确';
             }
         }else{
-            return view('index.update');
+            $data=[
+                'title'=> '修改缓存修改密码'
+            ];
+            return view('index.update',$data);
         }
     }
 
