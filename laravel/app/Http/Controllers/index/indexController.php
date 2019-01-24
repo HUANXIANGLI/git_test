@@ -125,7 +125,9 @@ class indexController extends Controller
     }
 
 
-    public function movieBuy(){
+    public function movieBuy($pos,$status){
+        $key = 'test_bit';
 
+        Redis::setbit($key,$pos,$status);
     }
 }
