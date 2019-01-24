@@ -6,9 +6,15 @@ use App\Model\userModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class indexController extends Controller
 {
+    /**
+     * 登录密码
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * liruixiang
+     */
     public function index(){
         if(request()->isMethod('post')){
             $user=request()->input('u_name');
@@ -27,6 +33,7 @@ class indexController extends Controller
 
             $app=userModel::where($where)->first();
             if($app){
+                //Redis::get('dl',$where);
                 header('refresh:2,url=/index');
                 echo '登录成功';
             }else{
@@ -41,7 +48,11 @@ class indexController extends Controller
         }
     }
 
-
+    /**
+     * 修改
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * liruixiang
+     */
     public function update(){
         if(request()->isMethod('post')){
             $u_name=request()->input('u_name');
@@ -93,4 +104,28 @@ class indexController extends Controller
         }
     }
 
+    /**
+     * 坐位
+     * liruixiang
+     */
+    public function movie(){
+        $key = 'test_bit';      // redis key
+
+        $seat_status = [];
+        for($i=0;$i<=30;$i++){
+            $status = Redis::getBit($key,$i);   //判断当前位 为0 或者 为1
+            $seat_status[$i] = $status;
+        }
+
+        $data=[
+            'seat'  => $seat_status,
+            'title'=>'坐位展示'
+        ];
+        return view('index.movie',$data);
+    }
+
+
+    public function movieBuy(){
+
+    }
 }
