@@ -85,19 +85,6 @@ Route::any('/aliReturn','Pay\AlipayController@aliReturn');        //支付宝支
 //上传文件
 Route::any('/upload','User\UserController@uploadAdd');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 //坐位
 Route::any('/movie','index\indexController@movie');
 Route::any('/buy/{pos}','index\indexController@movieBuy');
