@@ -100,7 +100,7 @@ Route::any('/upload','User\UserController@uploadAdd');
 
 //坐位
 Route::any('/movie','index\indexController@movie');
-Route::any('/buy','index\indexController@movieBuy');
+Route::any('/buy/{pos}','index\indexController@movieBuy');
 
 //考试登录
 Route::any('/index','index\indexController@index');
