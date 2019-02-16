@@ -125,10 +125,14 @@ class indexController extends Controller
     }
 
 
-    public function movieBuy($pos){ 
+    public function movieBuy($pos){
         $key = 'test_bit';
         Redis::setbit($key,$pos,1);
         header('Refresh:2;url=/movie');
         echo '抢座成功';
+    }
+
+    public function phpInfo(){
+        return view('phpInfo');
     }
 }
