@@ -46,19 +46,16 @@ Route::any('/goodsDetails/{goods_id}','Goods\GoodsController@goodsDetails')->mid
 
 
 
-
 //购物车展示
 Route::any('/cartList','Cart\CartController@cartList')->middleware('check.login.token');
 
 //购物车添加1
 Route::any('/cartAdd/{goods_id}','Cart\CartController@cartAdd')->middleware('check.login.token');
-
 //购物车添加2
 Route::any('/cartAdd2','Cart\CartController@cartAdd2')->middleware('check.login.token');
 
 //购物车删除1
 Route::any('/cartDel/{goods_id}','Cart\CartController@cartDel')->middleware('check.login.token');
-
 //购物车删除2
 Route::any('/cartDel2/{c_id}','Cart\CartController@cartDel2')->middleware('check.login.token');
 
@@ -67,15 +64,9 @@ Route::any('/cartDel2/{c_id}','Cart\CartController@cartDel2')->middleware('check
 
 //提交订单
 Route::any('/orderAdd','Order\OrderController@orderAdd')->middleware('check.login.token');
-
-//订单展示
-Route::any('/orderList','Order\OrderController@orderList')->middleware('check.login.token');
-
-//删除订单
-Route::any('/orderDel/{o_id}','Order\OrderController@orderDel')->middleware('check.login.token');
-
-//支付订单
-Route::any('/orderPay/{o_id}','Order\OrderController@orderPay')->middleware('check.login.token');
+Route::any('/orderList','Order\OrderController@orderList')->middleware('check.login.token');//订单展示
+Route::any('/orderDel/{o_id}','Order\OrderController@orderDel')->middleware('check.login.token');//删除订单
+Route::any('/orderPay/{o_id}','Order\OrderController@orderPay')->middleware('check.login.token');//支付订单
 
 //跳转网址
 Route::any('/Pay/{o_id}','Pay\AlipayController@pay');
@@ -91,8 +82,11 @@ Route::any('/buy/{pos}','index\indexController@movieBuy');
 
 //考试登录
 Route::any('/index','index\indexController@index');
-
-//考试修改密码
-Route::any('/update','index\indexController@update');
+Route::any('/update','index\indexController@update');//考试修改密码
 
 
+//微信
+Route::get('/weixin/valid','Weixin\WeixinController@validToken');
+Route::get('/weixin/valid1','Weixin\WeixinController@validToken1');
+Route::post('/weixin/valid1','Weixin\WeixinController@wxEvent');        //接收微信服务器事件推送
+Route::post('/weixin/valid','Weixin\WeixinController@validToken');
