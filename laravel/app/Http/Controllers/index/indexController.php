@@ -132,7 +132,4 @@ class indexController extends Controller
         echo '抢座成功';
     }
 
-    public function phpInfo(){
-        return view('phpInfo');
-    }
 }

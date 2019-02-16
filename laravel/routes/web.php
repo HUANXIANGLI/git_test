@@ -95,6 +95,4 @@ Route::any('/index','index\indexController@index');
 //考试修改密码
 Route::any('/update','index\indexController@update');
 
-//phpinfo
-Route::any('/phpinfo','index\indexController@phpInfo');
 
