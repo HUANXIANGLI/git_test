@@ -31,7 +31,7 @@ class WeixinController extends Controller
         //var_dump($data);exit;
         //解析XML
         $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
-
+        var_dump($xml);exit;
         $event = $xml->Event;                       //事件类型
         //var_dump($xml);echo '<hr>';
 
