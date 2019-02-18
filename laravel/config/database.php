@@ -106,7 +106,7 @@ return [
 
     'redis' => [
 
-        'client' => 'redis',
+        'client' => 'phpredis',
         'connection' => 'default',
 
         'default' => [
