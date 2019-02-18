@@ -28,7 +28,7 @@ class WeixinController extends Controller
     public function wxEvent()
     {
         $data = file_get_contents("php://input");
-
+        var_dump($data);exit;
         //解析XML
         $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
 
