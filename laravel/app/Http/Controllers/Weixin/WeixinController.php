@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Weixin;
 
+use App\Model\WeixinUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redis;
@@ -27,6 +28,62 @@ class WeixinController extends Controller
     public function wxEvent()
     {
         $data = file_get_contents("php://input");
+
+        //解析XML
+        $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
+
+        $event = $xml->Event;                       //事件类型
+        //var_dump($xml);echo '<hr>';
+
+        if($event=='subscribe'){
+            $openid = $xml->FromUserName;               //用户openid
+            $sub_time = $xml->CreateTime;               //扫码关注时间
+
+
+            echo 'openid: '.$openid;echo '</br>';
+            echo '$sub_time: ' . $sub_time;
+
+            //获取用户信息
+            $user_info = $this->getUserInfo($openid);
+            echo '<pre>';print_r($user_info);echo '</pre>';
+
+            //保存用户信息
+            $u = WeixinUser::where(['openid'=>$openid])->first();
+            //var_dump($u);die;
+            if($u){       //用户不存在
+                echo '用户已存在';
+            }else{
+                $user_data = [
+                    'openid'            => $openid,
+                    'add_time'          => time(),
+                    'nickname'          => $user_info['nickname'],
+                    'sex'               => $user_info['sex'],
+                    'headimgurl'        => $user_info['headimgurl'],
+                    'subscribe_time'    => $sub_time,
+                ];
+
+                $id = WeixinUser::insertGetId($user_data);      //保存用户信息
+                var_dump($id);
+            }
+        }
+
+        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
+        file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
+    }
+
+
+
+
+    /**
+     * 接收事件推送
+     */
+    public function validToken()
+    {
+        //$get = json_encode($_GET);
+        //$str = '>>>>>' . date('Y-m-d H:i:s') .' '. $get . "<<<<<\n";
+        //file_put_contents('logs/weixin.log',$str,FILE_APPEND);
+        //echo $_GET['echostr'];
+        $data = file_get_contents("php://input");
         $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
         file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
     }
@@ -50,6 +107,20 @@ class WeixinController extends Controller
         }
         return $token;
 
+    }
+
+    /**
+     * 获取用户信息
+     * @param $openid
+     */
+    public function getUserInfo($openid)
+    {
+        $openid = 'oGtn31fkd3Rfb-M72O_t8jXXDFzw';
+        $access_token = $this->getWXAccessToken();
+        $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
+
+        $data = json_decode(file_get_contents($url),true);
+        echo '<pre>';print_r($data);echo '</pre>';
     }
 
 }
