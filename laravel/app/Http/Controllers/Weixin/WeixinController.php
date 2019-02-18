@@ -115,12 +115,13 @@ class WeixinController extends Controller
      */
     public function getUserInfo($openid)
     {
-        $openid = 'oGtn31fkd3Rfb-M72O_t8jXXDFzw';
+        //$openid = 'oGtn31fkd3Rfb-M72O_t8jXXDFzw';
         $access_token = $this->getWXAccessToken();
         $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
 
         $data = json_decode(file_get_contents($url),true);
-        echo '<pre>';print_r($data);echo '</pre>';
+        return $data;
+        //echo '<pre>';print_r($data);echo '</pre>';
     }
 
 }
