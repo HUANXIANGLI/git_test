@@ -28,17 +28,17 @@ class WeixinController extends Controller
     public function wxEvent()
     {
         $data = file_get_contents("php://input");
-        var_dump($data);exit;
+        //var_dump($data);exit;
+
         //解析XML
         $xml = simplexml_load_string($data);        //将 xml字符串 转换成对象
-        //  var_dump($xml);exit;
-        $event = $xml->Event;                       //事件类型
-        //var_dump($xml);echo '<hr>';
+        //var_dump($xml);exit;
 
+        $event = $xml->Event;                       //事件类型
+        //echo $event;echo '<hr>';
         if($event=='subscribe'){
             $openid = $xml->FromUserName;               //用户openid
             $sub_time = $xml->CreateTime;               //扫码关注时间
-
 
             echo 'openid: '.$openid;echo '</br>';
             echo '$sub_time: ' . $sub_time;
