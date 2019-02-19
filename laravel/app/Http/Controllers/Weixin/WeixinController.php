@@ -136,15 +136,44 @@ class WeixinController extends Controller
         //var_dump($client);exit;
 
         $data= [
-            "button"=>[
+             [
+                 "button"=>[
+                 [
+                    "type"=>"click",
+                    "name"=>"今日歌曲",
+                    "key"=>"V1001_TODAY_MUSIC"
+                 ],
                 [
-                     "type"=>"view",// view类型 跳转指定 URL
-                      "name"=>"今日歌曲",
-                      "url"=>"http://www.baidu.com"
-                ]
+                        "name"=>"菜单",
+                        "sub_button"=>[
+                        [
+                            "type"=>"view",
+                            "name"=>"搜索",
+                            "url"=>"http://www.soso.com/"
+                        ],
+                        [
+                            "type"=>"miniprogram",
+                            "name"=>"wxa",
+                            "url"=>"http://mp.weixin.qq.com",
+                            "appid"=>"wx286b93c14bbf93aa",
+                            "pagepath"=>"pages/lunar/index"
+                        ],
+                        [
+                            "type"=>"click",
+                            "name"=>"赞一下我们",
+                            "key"=>"V1001_GOOD"
+                        ]]
+                ]]
             ]
         ];
 
+//        "button"=>[
+//            [
+//                "type"=>"view",// view类型 跳转指定 URL
+//                "name"=>"今日歌曲",
+//                "url"=>"http://www.baidu.com"
+//            ]
+//        ]
         $r = $client->request('POST', $url, [
             'body' => json_encode($data,JSON_UNESCAPED_UNICODE)
         ]);
@@ -152,7 +181,7 @@ class WeixinController extends Controller
         // 3 解析微信接口返回信息
 
         $response_arr = json_decode($r->getBody(),true);
-        echo '<pre>';print_r($response_arr);echo '</pre>';die;
+        //echo '<pre>';print_r($response_arr);echo '</pre>';die;
 
         if($response_arr['errcode'] == 0){
             echo "菜单创建成功";
