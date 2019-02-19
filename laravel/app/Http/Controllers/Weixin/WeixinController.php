@@ -76,7 +76,7 @@ class WeixinController extends Controller
             }
         }elseif($xml->MsgType=='text'){
             if($xml->Content=='图片'){
-                $xml_response='<xml><ToUserName>< ![CDATA['.$openid.'] ]></ToUserName><FromUserName>< ![CDATA['.$xml->ToUserName.'] ]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType>< ![CDATA[image] ]></MsgType><Image><MediaId>< ![CDATA[media_id] ]></MediaId></Image></xml>';
+                $xml_response='<xml><ToUserName>< ![CDATA['.$openid.'] ]></ToUserName><FromUserName>< ![CDATA['.$xml->ToUserName.'] ]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType>< ![CDATA[image] ]></MsgType><Image><MediaId>< ![CDATA['.'http://img5.imgtn.bdimg.com/it/u=2230167403,4188800858&fm=26&gp=0.jpg'.'] ]></MediaId></Image></xml>';
                 echo $xml_response;
             }
         }
