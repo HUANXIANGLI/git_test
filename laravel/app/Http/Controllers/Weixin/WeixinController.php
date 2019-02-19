@@ -73,8 +73,9 @@ class WeixinController extends Controller
                 $this->click($openid,$xml->ToUserName);
             }
         }elseif($event=='subscribe'){               //click 菜单
-            if($xml->EventKey=='click'){
-                $this->click($openid,$xml->ToUserName);
+            if($xml->EventKey=='subscribe'){
+                $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$from.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '您好, 现在时间'. date('Y-m-d H:i:s') .']]></Content></xml>';
+                echo $xml_response;
             }
         }
 
