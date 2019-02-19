@@ -130,10 +130,10 @@ class WeixinController extends Controller
         //echo __METHOD__;die;
         // 1 获取access_token 拼接请求接口
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->getWXAccessToken();
-        echo $url;echo '</br>';
+        //echo $url;echo '</br>';
         //2 请求微信接口
         $client = new GuzzleHttp\Client(['base_uri' => $url]);
-
+        var_dump($client);exit;
 
         $data= [
             "button"=>[
