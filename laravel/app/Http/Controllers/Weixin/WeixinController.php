@@ -37,6 +37,8 @@ class WeixinController extends Controller
 
         $event = $xml->Event;                       //事件类型
         //echo $event;echo '<hr>';die;
+
+        $openid = $xml->FromUserName;
         if($event=='subscribe'){
             $openid = $xml->FromUserName;               //用户openid
             $sub_time = $xml->CreateTime;               //扫码关注时间
@@ -66,7 +68,7 @@ class WeixinController extends Controller
                 $id = WeixinUser::insertGetId($user_data);      //保存用户信息
                 var_dump($id);
             }
-        }else if($event=="CLICK"){
+        }elseif($event=='CLICK'){               //click 菜单
             if($xml->EventKey=='click'){
                 $this->click($openid,$xml->ToUserName);
             }
