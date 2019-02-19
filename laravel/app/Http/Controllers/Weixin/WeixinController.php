@@ -76,7 +76,7 @@ class WeixinController extends Controller
             }
         }elseif($xml->MsgType=='text'){
             if($xml->Content=='图片'){
-                $xml_response='<xml><ToUserName>< ![CDATA['.$openid.'] ]></ToUserName><FromUserName>< ![CDATA['.$xml->ToUserName.'] ]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType>< ![CDATA[image] ]></MsgType><Image><MediaId>< ![CDATA['.'https://zhidao.baidu.com/kit/topic?name=tuhudongji&from=qbyouce'.'] ]></MediaId></Image></xml>';
+                $xml_response='<xml><ToUserName>< ![CDATA['.$openid.'] ]></ToUserName><FromUserName>< ![CDATA['.$xml->ToUserName.'] ]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType>< ![CDATA[image] ]></MsgType><Image><MediaId>< ![CDATA['.'VnVV5jQq6PJviprpo7dqzBOze8JCoDDgZm1dHKV4K9cPGrphIoaHVu1FlW_-c6kn'.'] ]></MediaId></Image></xml>';
                 echo $xml_response;
             }
         }
