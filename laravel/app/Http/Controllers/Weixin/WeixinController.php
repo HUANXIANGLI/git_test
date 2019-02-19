@@ -136,8 +136,13 @@ class WeixinController extends Controller
         //var_dump($client);exit;
 
         $data= [
-             [
-                 "button"=>[
+             "button"=>[
+                    [
+                    "type"=>"click",
+                    "name"=>"今日歌曲",
+                    "key"=>"V1001_TODAY_MUSIC"
+                 ],
+                    [
                     "name"=>"菜单",
                     "sub_button"=>[
                         [
@@ -158,8 +163,8 @@ class WeixinController extends Controller
                             "key"=>"V1001_GOOD"
                         ]
                     ]
-                 ]
-            ]
+                ]
+             ]
         ];
 
 //        "button"=>[
