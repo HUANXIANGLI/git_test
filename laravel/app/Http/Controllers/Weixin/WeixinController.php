@@ -133,7 +133,7 @@ class WeixinController extends Controller
         //echo $url;echo '</br>';
         //2 请求微信接口
         $client = new GuzzleHttp\Client(['base_uri' => $url]);
-        var_dump($client);exit;
+        //var_dump($client);exit;
 
         $data= [
             "button"=>[
