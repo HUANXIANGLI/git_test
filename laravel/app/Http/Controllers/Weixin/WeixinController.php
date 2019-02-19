@@ -66,13 +66,22 @@ class WeixinController extends Controller
                 $id = WeixinUser::insertGetId($user_data);      //保存用户信息
                 var_dump($id);
             }
+        }else if($event=="CLICK"){
+            if($xml->EventKey=='click'){
+                $this->click($openid,$xml->ToUserName);
+            }
         }
 
         $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
         file_put_contents('logs/wx_event.log',$log_str,FILE_APPEND);
     }
 
-
+    public function click($openid,$from){
+        // 文本消息
+        $xml_response = '<xml>
+        <ToUserName>< ![CDATA['.$openid.'] ]></ToUserName><FromUserName>< ![CDATA['.$from.'] ]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType>< ![CDATA[text] ]></MsgType><Content><![CDATA[\'. \'Hello World, 现在时间\'. date(\'Y-m-d H:i:s\') .\']]></Content></xml>';
+        echo $xml_response;
+    }
 
 
     /**
@@ -125,7 +134,9 @@ class WeixinController extends Controller
         //echo '<pre>';print_r($data);echo '</pre>';
     }
 
-
+    /**
+     * 修改菜单一 二 级
+     */
     public function createMenu(){
         //echo __METHOD__;die;
         // 1 获取access_token 拼接请求接口
@@ -197,26 +208,24 @@ class WeixinController extends Controller
                         ],
                     ]
                 ],
-                [
-                    "name"=>"个人网页",
-                    "sub_button"=>[
-                        [
-                            "type"=>"view",
-                            "name"=>"主页",
-                            "url"=>"http://www.soso.com/"
-                        ]
-                    ]
-                ]
+                 [
+                     "type"=>"click",
+                      "name"=>"现在时间",
+                      "key"=>"click"
+                  ]
+//                [
+//                    "name"=>"个人网页",
+//                    "sub_button"=>[
+//                        [
+//                            "type"=>"view",
+//                            "name"=>"主页",
+//                            "url"=>"http://www.soso.com/"
+//                        ]
+//                    ]
+//                ]
              ]
         ];
 
-//        "button"=>[
-//            [
-//                "type"=>"view",// view类型 跳转指定 URL
-//                "name"=>"今日歌曲",
-//                "url"=>"http://www.baidu.com"
-//            ]
-//        ]
         $r = $client->request('POST', $url, [
             'body' => json_encode($data,JSON_UNESCAPED_UNICODE)
         ]);
@@ -224,7 +233,7 @@ class WeixinController extends Controller
         // 3 解析微信接口返回信息
 
         $response_arr = json_decode($r->getBody(),true);
-        echo '<pre>';print_r($response_arr);echo '</pre>';die;
+        //echo '<pre>';print_r($response_arr);echo '</pre>';die;
 
         if($response_arr['errcode'] == 0){
             echo "菜单创建成功";
@@ -233,7 +242,7 @@ class WeixinController extends Controller
             echo $response_arr['errmsg'];
 
         }
-
-
     }
+
+
 }
