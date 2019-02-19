@@ -68,14 +68,11 @@ class WeixinController extends Controller
                 $id = WeixinUser::insertGetId($user_data);      //保存用户信息
                 var_dump($id);
             }
+            $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '您好'. date('Y-m-d H:i:s') .']]></Content></xml>';
+            echo $xml_response;
         }elseif($event=='CLICK'){               //click 菜单
             if($xml->EventKey=='click'){
                 $this->click($openid,$xml->ToUserName);
-            }
-        }elseif($event=='subscribe'){               //click 菜单
-            if($xml->EventKey=''){
-                $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '您好'. date('Y-m-d H:i:s') .']]></Content></xml>';
-                echo $xml_response;
             }
         }
 
