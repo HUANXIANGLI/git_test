@@ -72,6 +72,10 @@ class WeixinController extends Controller
             if($xml->EventKey=='click'){
                 $this->click($openid,$xml->ToUserName);
             }
+        }elseif($event=='subscribe'){               //click 菜单
+            if($xml->EventKey=='click'){
+                $this->click($openid,$xml->ToUserName);
+            }
         }
 
         $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
