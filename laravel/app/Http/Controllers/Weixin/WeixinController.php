@@ -56,7 +56,7 @@ class WeixinController extends Controller
                     $file_name = $this->dlWxImg($xml->MediaId);
                     $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. str_random(10) . ' >>> ' . date('Y-m-d H:i:s') .']]></Content></xml>';
                     echo $xml_response;
-                    
+
                     //写入数据库
                     $data = [
                         'openid'    => $openid,
@@ -148,6 +148,7 @@ class WeixinController extends Controller
         }else{      //保存失败
 
         }
+        return $file_name;
     }
 
     /**
