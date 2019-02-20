@@ -57,7 +57,7 @@ class WeixinController extends Controller
                 }
             }
         }
-        
+
         if($event=='subscribe'){
             $openid = $xml->FromUserName;               //用户openid
             $sub_time = $xml->CreateTime;               //扫码关注时间

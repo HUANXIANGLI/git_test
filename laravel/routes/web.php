@@ -92,6 +92,4 @@ Route::post('/weixin/valid1','Weixin\WeixinController@wxEvent');        //接收
 Route::post('/weixin/valid','Weixin\WeixinController@validToken');
 Route::get('/weixin/create_menu','Weixin\WeixinController@createMenu');
 
-//微信回复信息
-Route::get('/weixin/create_menu','Weixin\WeixinController@createMenu');
 
