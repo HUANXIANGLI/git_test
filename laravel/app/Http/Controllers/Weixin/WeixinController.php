@@ -67,6 +67,8 @@ class WeixinController extends Controller
                 }
             }
 
+
+            
             //保存用户信息
             $u = WeixinUser::where(['openid'=>$openid])->first();
             //var_dump($u);die;
