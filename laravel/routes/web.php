@@ -93,3 +93,6 @@ Route::post('/weixin/valid','Weixin\WeixinController@validToken');
 Route::get('/weixin/create_menu','Weixin\WeixinController@createMenu');
 
 
+
+Route::any('/all','Weixin\WeixinController@all');
+
