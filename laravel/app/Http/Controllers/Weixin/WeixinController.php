@@ -55,9 +55,8 @@ class WeixinController extends Controller
                 if(1){  //下载图片素材
                     $file_name = $this->dlWxImg($xml->MediaId);
                     $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. str_random(10) . ' >>> ' . date('Y-m-d H:i:s') .']]></Content></xml>';
-
-
-
+                    echo $xml_response;
+                    
                     //写入数据库
                     $data = [
                         'openid'    => $openid,
@@ -71,8 +70,6 @@ class WeixinController extends Controller
 
                     $m_id = WeixinMedia::insertGetId($data);
                     var_dump($m_id);
-                    exit;
-                    echo $xml_response;
                 }
             }elseif($xml->MsgType=='voice'){        //处理语音信息
                 $this->dlVoice($xml->MediaId);
