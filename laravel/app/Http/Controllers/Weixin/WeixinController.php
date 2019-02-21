@@ -437,6 +437,34 @@ class WeixinController extends Controller
 
     }
 
+    /**
+     * 获取永久素材列表
+     */
+    public function materialList()
+    {
+        $client = new GuzzleHttp\Client();
+        $type = $_GET['type'];
+        $offset = $_GET['offset'];
+
+        $url = 'https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token='.$this->getWXAccessToken();
+
+        $body = [
+            "type"      => $type,
+            "offset"    => $offset,
+            "count"     => 20
+        ];
+        $response = $client->request('POST', $url, [
+            'body' => json_encode($body)
+        ]);
+
+        $body = $response->getBody();
+        echo $body;echo '<hr>';
+        $arr = json_decode($response->getBody(),true);
+        echo '<pre>';print_r($arr);echo '</pre>';
+
+
+    }
+
     //上传至微信永久素材
     public function upMaterialTest($file_path)
     {
