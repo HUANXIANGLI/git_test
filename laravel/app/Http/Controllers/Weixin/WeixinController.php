@@ -73,8 +73,12 @@ class WeixinController extends Controller
                 }
             }elseif($xml->MsgType=='voice'){        //处理语音信息
                 $this->dlVoice($xml->MediaId);
-            }elseif($xml->MsgType=='video'){
+                $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. str_random(10) . ' >>> ' . date('Y-m-d H:i:s') .']]></Content></xml>';
+                echo $xml_response;
+            }elseif($xml->MsgType=='video'){        //处理视频信息
                 $this->dlVideo($xml->MediaId);
+                $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. str_random(10) . ' >>> ' . date('Y-m-d H:i:s') .']]></Content></xml>';
+                echo $xml_response;
             }elseif($xml->MsgType=='event') {        //判断事件类型
                 if($event=='subscribe'){
                     $openid = $xml->FromUserName;               //用户openid
@@ -177,6 +181,7 @@ class WeixinController extends Controller
         }else{      //保存失败
 
         }
+        return $file_name;
     }
 
     /**
@@ -203,6 +208,8 @@ class WeixinController extends Controller
         }else{      //保存失败
 
         }
+
+        return $file_name;
     }
 
     /**
