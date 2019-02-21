@@ -96,3 +96,5 @@ Route::get('/weixin/create_menu','Weixin\WeixinController@createMenu');
 
 Route::any('/all','Weixin\WeixinController@all');
 
+Route::any('/test','Weixin\WeixinController@test');
+

@@ -150,7 +150,7 @@ class WeixinController extends Controller
         //保存图片
         $r = Storage::disk('local')->put($wx_image_path,$response->getBody());
         if($r){     //保存成功
-            
+
         }else{      //保存失败
 
         }
@@ -409,4 +409,11 @@ class WeixinController extends Controller
         }
     }
 
+    //获取永久素材
+    public function test(){
+        $access_token=$this->getWXAccessToken();
+        $url='https://api.weixin.qq.com/cgi-bin/material/get_material?access_token='.$access_token;
+        $data = json_decode(file_get_contents($url),true);
+        var_dump($data);
+    }
 }
