@@ -9,7 +9,7 @@
         {{csrf_field()}}
         <h1>微信素材添加页面</h1>
         <table border="1">
-            <tr>
+            <tr>  
                 <td><h2>文本</h2></td>
                 <td><input type="text" name="msg"></td>
             </tr>
