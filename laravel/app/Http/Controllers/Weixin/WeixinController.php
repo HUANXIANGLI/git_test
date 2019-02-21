@@ -150,7 +150,19 @@ class WeixinController extends Controller
         //保存图片
         $r = Storage::disk('local')->put($wx_image_path,$response->getBody());
         if($r){     //保存成功
+            //新增永久素材
+            $curl = 'https://api.weixin.qq.com/cgi-bin/material/add_material?access_token='.$this->getWXAccessToken();
+            $data= array(
+                "media"=>$file_info['filename'],
+                'form-data'=>$file_info
+            );
+            $result = request($curl,true,'POST',$data);
+            if ($result){
+                $json = json_decode($result,true);
 
+                return $json;
+            }
+            return false;
         }else{      //保存失败
 
         }
