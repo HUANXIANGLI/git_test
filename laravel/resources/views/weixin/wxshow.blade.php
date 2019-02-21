@@ -5,7 +5,8 @@
     <title>微信素材添加页面</title>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="{{url('/weixin/mediaAdd')}}" method="post" enctype="multipart/form-data">
+        {{csrf_field()}}
         <h1>微信素材添加页面</h1>
         <table border="1">
             <tr>
@@ -14,11 +15,11 @@
             </tr>
             <tr>
                 <td><h2>图片上传</h2></td>
-                <td><input type="file"></td>
+                <td><input type="file" name="media"></td>
             </tr>
             <tr>
                 <td></td>
-                <td><button type="submit"><h2><添加></添加></h2></button></td>
+                <td><input type="submit" value="添加"></td>
             </tr>
         </table>
     </form>
