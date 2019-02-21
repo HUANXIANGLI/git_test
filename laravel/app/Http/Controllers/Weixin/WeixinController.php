@@ -452,7 +452,7 @@ class WeixinController extends Controller
         ]);
 
         $body = $response->getBody();
-        echo $body;echo '<hr>';
+        echo $body;echo '<hr>';  
         $d = json_decode($body,true);
         echo '<pre>';print_r($d);echo '</pre>';
 
