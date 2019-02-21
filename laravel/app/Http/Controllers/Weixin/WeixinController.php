@@ -424,7 +424,7 @@ class WeixinController extends Controller
                 ],
                 [
                     'name'     => 'media',
-                    'contents' => fopen('abc.jpg', 'r')
+                    'contents' => fopen('QMAzRcNh3MGWS8A.png', 'r')
                 ],
             ]
         ]);
