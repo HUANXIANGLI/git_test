@@ -93,8 +93,12 @@ Route::post('/weixin/valid','Weixin\WeixinController@validToken');
 Route::get('/weixin/create_menu','Weixin\WeixinController@createMenu');
 
 
-
+//群发
 Route::any('/all','Weixin\WeixinController@all');
 
+
+//添加永久素材页面
+Route::get('/weixin/mediaShow','Weixin\WeixinController@WxMediaShow');     //表单测试   展示页面
+Route::post('/weixin/mediaAdd','Weixin\WeixinController@WxMediaAdd');     //表单测试   添加
 
 

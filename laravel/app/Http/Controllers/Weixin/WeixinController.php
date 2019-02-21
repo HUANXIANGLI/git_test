@@ -54,7 +54,6 @@ class WeixinController extends Controller
                 //视业务需求是否需要下载保存图片
                 if(1){  //下载图片素材
                     $file_name = $this->dlWxImg($xml->MediaId);
-                    $this->test($xml->MediaId);
                     $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. str_random(10) . ' >>> ' . date('Y-m-d H:i:s') .']]></Content></xml>';
                     echo $xml_response;
 
@@ -410,11 +409,15 @@ class WeixinController extends Controller
         }
     }
 
-    //获取永久素材
-    public function test($media_id){
-        $access_token=$this->getWXAccessToken();
-        $url='https://api.weixin.qq.com/cgi-bin/material/get_material?access_token='.$this->getWXAccessToken().'&media_id='.$media_id;
-        $data = json_decode(file_get_contents($url),true);
-        var_dump($url);
+    //添加永久素材页面
+    public function WxMediaShow(){
+        return view('weixin.wxshow');
     }
+
+    //
+    public function WxMediaAdd(){
+
+    }
+
+
 }
