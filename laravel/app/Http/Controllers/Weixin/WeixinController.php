@@ -413,7 +413,7 @@ class WeixinController extends Controller
     public function test(){
         $access_token=$this->getWXAccessToken();
         $url='https://api.weixin.qq.com/cgi-bin/material/get_material?access_token='.$access_token;
-        $data = json_decode(file_get_contents($url),true);
-        var_dump($data);
+        
+        var_dump($url);
     }
 }
