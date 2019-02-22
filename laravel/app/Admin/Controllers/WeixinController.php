@@ -11,6 +11,7 @@ use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use GuzzleHttp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class WeixinController extends Controller
 {
