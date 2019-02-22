@@ -10,6 +10,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use GuzzleHttp;
+use Illuminate\Http\Request;
 
 class WeixinController extends Controller
 {

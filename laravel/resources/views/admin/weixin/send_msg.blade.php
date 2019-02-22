@@ -5,7 +5,7 @@
     <title>微信素材添加页面</title>
 </head>
 <body>
-<form action="{{url('/admin/weixin/sendAdd')}}" method="post">
+<form action="{{url('/admin/weixin/sendmsg')}}" method="post">
     {{csrf_field()}}
     <h1>微信群发消息页面</h1>
     <table border="1">

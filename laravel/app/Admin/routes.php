@@ -19,5 +19,5 @@ Route::group([
     $router->resource('/material',WeixinMaterialController::class);
 
     $router->get('/weixin/sendmsg','WeixinController@sendMsgView');      //
-    $router->post('/weixin/sendAdd','WeixinController@sendMsg');
+    $router->post('/weixin/sendmsg','WeixinController@sendMsg');
 });
