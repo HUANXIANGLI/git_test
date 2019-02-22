@@ -102,7 +102,7 @@ class WeixinController extends Controller
         });
 
         $grid->actions(function ($actions) {
-            $actions->append('<a href="/weixin/information/">发送信息<i class="fa fa-eye" data-toggle="modal"></i></a>');
+            $actions->append('<a href="/weixin/information/"><i class="fa fa-eye">发送信息</i></a>');
         });
         return $grid;
     }
