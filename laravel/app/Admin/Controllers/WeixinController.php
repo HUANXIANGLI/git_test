@@ -102,7 +102,7 @@ class WeixinController extends Controller
         });
         $grid->actions(function ($actions) {
             $actions->getKey();
-            $actions->append('<a href="/weixin/information/{{(\'Openid\')}}">发送信息<i class="fa fa-eye" data-toggle="modal" data-target="#myModal"></i></a>');
+            $actions->append('<a href="/weixin/information/"."{$actions->getKey()}">发送信息<i class="fa fa-eye" data-toggle="modal" data-target="#myModal"></i></a>');
         });
         return $grid;
     }
