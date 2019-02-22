@@ -101,11 +101,11 @@ class WeixinController extends Controller
             return date('Y-m-d H:s:i',$time);
         });
         $grid->tools(function (Grid\Tools $tools){
-            $tools->append('<a class="btn btn-sm btn-default form-history-bac" style="float: right;margin-right: 20px;" href="你要跳转的页面"><i class="fa fa-arrow-left"></i>&nbsp;返回</a>');
+            $tools->append('<a class="btn btn-sm btn-default form-history-bac" style="float: right;margin-right: 20px;" href=""><i class="fa fa-arrow-left"></i>发送信息</a>');
         });
         return $grid;
     }
-    
+
 
     /**
      * Make a show builder.
