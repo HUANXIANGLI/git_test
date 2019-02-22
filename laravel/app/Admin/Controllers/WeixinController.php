@@ -102,7 +102,7 @@ class WeixinController extends Controller
         });
         $grid->actions(function ($actions) {
             $actions->getKey();
-            $actions->append('<a href="order/"."{$actions->getKey()}"><i class="fa fa-eye" data-toggle="modal" data-target="#myModal"></i></a>');
+            $actions->append('<a href="order/"."{$actions->getKey()}">sdfasdfasd<i class="fa fa-eye" data-toggle="modal" data-target="#myModal"></i></a>');
         });
         return $grid;
     }
