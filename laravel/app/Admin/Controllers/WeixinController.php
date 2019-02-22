@@ -89,7 +89,6 @@ class WeixinController extends Controller
         $grid->id('Id');
         $grid->uid('Uid');
         $grid->openid('Openid');
-        $open_id=$grid->openid('Openid');
         $grid->add_time('Add time')->display(function($time){
             return date('Y-m-d H:s:i',$time);
         });
@@ -103,7 +102,7 @@ class WeixinController extends Controller
         });
         $grid->actions(function ($actions) {
             $actions->getKey();
-            $actions->append('<a href="/weixin/information?open_id=".$open_id>发送信息<i class="fa fa-eye" data-toggle="modal" data-target="#myModal"></i></a>');
+            $actions->append('<a href="/weixin/information/{{$grid->openid(\'Openid\');}}">发送信息<i class="fa fa-eye" data-toggle="modal" data-target="#myModal"></i></a>');
         });
         return $grid;
     }
