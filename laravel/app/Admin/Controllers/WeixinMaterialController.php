@@ -83,8 +83,12 @@ class WeixinMaterialController extends Controller
 
         $grid->id('Id');
         $grid->test('Test');
-        $grid->url('Url');
-        $grid->atime('Atime');
+        $grid->url('Url')->display(function($img_url){
+            return '<img src="/'.$img_url.'"width=80px;height=80px>';
+        });
+        $grid->atime('Atime')->display(function($time){
+            return date('Y-m-d H:s:i',$time);
+        });
 
         return $grid;
     }
