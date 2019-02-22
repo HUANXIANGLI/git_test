@@ -100,7 +100,7 @@ class WeixinController extends Controller
         $grid->subscribe_time('Subscribe time')->display(function($time){
             return date('Y-m-d H:s:i',$time);
         });
-        $grid->tools(function (Grid\Tools $tools){
+        $grid->button(function (Grid\Tools $tools){
             $tools->append('<a class="btn btn-sm btn-default form-history-bac" style="float: right;margin-right: 20px;" href=""><i class="fa fa-arrow-left"></i>发送信息</a>');
         });
         return $grid;
