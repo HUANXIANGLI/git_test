@@ -100,9 +100,9 @@ class WeixinController extends Controller
         $grid->subscribe_time('Subscribe time')->display(function($time){
             return date('Y-m-d H:s:i',$time);
         });
+
         $grid->actions(function ($actions) {
-            $open_id=$_ENV->openid('Openid');
-            $actions->append('<a href="/weixin/information/'.$open_id.'">发送信息<i class="fa fa-eye" data-toggle="modal" data-target="#myModal"></i></a>');
+            $actions->append('<a href="/weixin/information/">发送信息<i class="fa fa-eye" data-toggle="modal" data-target="#myModal"></i></a>');
         });
         return $grid;
     }
