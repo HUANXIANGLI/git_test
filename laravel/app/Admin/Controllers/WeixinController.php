@@ -101,7 +101,7 @@ class WeixinController extends Controller
             return date('Y-m-d H:s:i',$time);
         });
         $grid->actions(function ($actions) {
-            $open_id=$actions->openid('Openid');
+            $open_id=$_ENV->openid('Openid');
             $actions->append('<a href="/weixin/information/'.$open_id.'">发送信息<i class="fa fa-eye" data-toggle="modal" data-target="#myModal"></i></a>');
         });
         return $grid;
