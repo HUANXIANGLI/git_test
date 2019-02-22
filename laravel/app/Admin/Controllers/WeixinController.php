@@ -100,7 +100,7 @@ class WeixinController extends Controller
         $grid->subscribe_time('Subscribe time')->display(function($time){
             return date('Y-m-d H:s:i',$time);
         });
-        $this->define_preg('wx','发送信息');
+        $grid->define_preg('wx','发送信息');
 
         return $grid;
     }
