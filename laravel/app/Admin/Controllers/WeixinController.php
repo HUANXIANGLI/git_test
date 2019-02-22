@@ -100,6 +100,7 @@ class WeixinController extends Controller
         $grid->subscribe_time('Subscribe time')->display(function($time){
             return date('Y-m-d H:s:i',$time);
         });
+        $this->define_preg('wx','发送信息');
 
         return $grid;
     }
@@ -107,11 +108,8 @@ class WeixinController extends Controller
     /**
 
      *设置跳转地址及标题*
-
      *@param $url跳转地址
-
      *@param $title标题
-
      */
 
     public function define_preg($url,$title)
