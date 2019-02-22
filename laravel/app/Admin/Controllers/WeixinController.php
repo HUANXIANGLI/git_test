@@ -9,6 +9,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use GuzzleHttp;
 
 class WeixinController extends Controller
 {
@@ -146,8 +147,6 @@ class WeixinController extends Controller
      */
     public function sendMsgView(Content $content)
     {
-        //return view('admin.weixin.send_msg');
-
         return $content
             ->header('微信')
             ->description('群发消息')
@@ -155,17 +154,42 @@ class WeixinController extends Controller
     }
 
     /**
-     *
+     *群发消息
      */
-    public function sendMsg()
+    public function sendMsg(Request $request)
     {
-        //获取用户openid
-        $list = WeixinUser::all()->pluck('openid')->take(10)->toArray();
+        $access_token = $this->getWXAccessToken();
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token='.$access_token;
+        //var_dump($url);exit;
+        $client = new GuzzleHttp\Client(['base_url' => $url]);
+        $param = [
+            "filter"=>[
+                "is_to_all"=>true
+            ],
+            "text"=>[
+                "content"=>$request->input('msg')
+            ],
+            "msgtype"=>"text"
+        ];
+        ///var_dump($param);exit;
+        $r = $client->Request('POST', $url, [
+            'body' => json_encode($param, JSON_UNESCAPED_UNICODE)
+        ]);
+        //var_dump($r);exit;
+        $response_arr = json_decode($r->getBody(), true);
+        //echo '<pre>';
+        //print_r($response_arr);
+        // echo '</pre>';
 
+        if ($response_arr['errcode'] == 0) {
+            echo "发送成功";
+        } else {
+            echo "发送失败";
+            echo '</br>';
+            echo $response_arr['errmsg'];
 
-        //群发消息
-
-        echo '<pre>';print_r($list);echo '</pre>';
-        echo '<pre>';print_r($_POST);echo '</pre>';
+        }
     }
+
+
 }
