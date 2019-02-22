@@ -105,6 +105,26 @@ class WeixinController extends Controller
     }
 
     /**
+
+     *设置跳转地址及标题*
+
+     *@param $url跳转地址
+
+     *@param $title标题
+
+     */
+
+    public function define_preg($url,$title)
+    {
+
+        $this->preg_url['url'] = $url;
+
+        $this->preg_url['title'] = $title;
+
+        $this->preg_url['flag'] = true;
+    }
+
+    /**
      * Make a show builder.
      *
      * @param mixed $id
