@@ -100,27 +100,12 @@ class WeixinController extends Controller
         $grid->subscribe_time('Subscribe time')->display(function($time){
             return date('Y-m-d H:s:i',$time);
         });
-        $grid->define_preg('wx','发送信息');
-
+        $grid->tools(function (Grid\Tools $tools){
+            $tools->append('<a class="btn btn-sm btn-default form-history-bac" style="float: right;margin-right: 20px;" href="你要跳转的页面"><i class="fa fa-arrow-left"></i>&nbsp;返回</a>');
+        });
         return $grid;
     }
-
-    /**
-
-     *设置跳转地址及标题*
-     *@param $url跳转地址
-     *@param $title标题
-     */
-
-    public function define_preg($url,$title)
-    {
-
-        $this->preg_url['url'] = $url;
-
-        $this->preg_url['title'] = $title;
-
-        $this->preg_url['flag'] = true;
-    }
+    
 
     /**
      * Make a show builder.
