@@ -521,7 +521,9 @@ class WeixinController extends Controller
         echo 'save_file_path: '.$save_file_path;echo '<hr>';
 
         $material_data = [
-            'url'=>$save_file_path
+            'test'=>$request->input('msg'),
+            'url'=>$save_file_path,
+            'atime'=>time()
         ];
 
         $id = WeixinMaterial::insertGetId($material_data);      //保存用户信息
