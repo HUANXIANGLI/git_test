@@ -94,7 +94,7 @@ Route::get('/weixin/create_menu','Weixin\WeixinController@createMenu');
 
 
 //群发
-Route::any('/all','Weixin\WeixinController@all');
+Route::any('/all','Weixin\WeixinController@vall');
 
 
 //添加永久素材页面

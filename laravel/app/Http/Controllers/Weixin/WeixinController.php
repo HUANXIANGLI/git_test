@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Weixin;
 
+use App\Model\WeixinMaterial;
 use App\Model\WeixinMedia;
 use App\Model\WeixinUser;
 use Illuminate\Http\Request;
@@ -518,10 +519,21 @@ class WeixinController extends Controller
         $save_file_path = $request->media->storeAs('form_test',$new_file_name);       //返回保存成功之后的文件路径
 
         echo 'save_file_path: '.$save_file_path;echo '<hr>';
-        //exit;
+
+        $material_data = [
+            'url'=>$save_file_path
+        ];
+
+        $id = WeixinMaterial::insertGetId($material_data);      //保存用户信息
+
+        if($id){
+            echo '添加成功';
+        }else{
+            echo '添加失败';
+        }
+
         //上传至微信永久素材
         $this->upMaterialTest($save_file_path);
     }
-
 
 }
