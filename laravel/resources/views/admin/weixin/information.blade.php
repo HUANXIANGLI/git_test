@@ -26,7 +26,7 @@
                     <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">Nice奶思</p>
-                        <div class="msg" style="background-color: fuchsia">
+                        <div class="msg" >
                             么么哒，马总发个红包呗！
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                     <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">Nice奶思</p>
-                        <div class="msg" style="background-color: fuchsia">
+                        <div class="msg" >
                             么么哒，马总发个红包呗！
                         </div>
                     </div>
