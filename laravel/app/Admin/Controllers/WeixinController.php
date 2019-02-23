@@ -109,15 +109,12 @@ class WeixinController extends Controller
     /**
      * 私聊
      */
-    public function information($open_id,Content $content)
+    public function information(Content $content)
     {
-        $data=[
-          'open_id'=>$open_id
-        ];
         return $content
             ->header('微信')
             ->description('私聊')
-            ->body(view('admin.weixin.information',$data));
+            ->body(view('admin.weixin.information'));
     }
 
 
