@@ -60,10 +60,10 @@
 <div class="wc__footTool-panel" align="bottom">
     <!-- 输入框模块 -->
     <form class="wc__editor-panel wc__borT flexbox" method="post" action="">
-        <div class="wrap-editor flex1" style="border: 1px red solid;width:1000px;float: left;"><div class="editor J__wcEditor" contenteditable="true"></div></div>
+        <div class="wrap-editor flex1" style="border: 1px red solid;width:1000px;float: right;"><div class="editor J__wcEditor" contenteditable="true"></div></div>
         <i class="btn btn-emotion"></i>
         <i class="btn btn-choose"></i>
-        <div style="float: left;"><button type="submit" style="height:33px;">发送</button></div>
+        <div style="float: right;"><button type="submit" style="height:33px;">发送</button></div>
     </form>
 
     <!-- 表情、选择模块 -->
