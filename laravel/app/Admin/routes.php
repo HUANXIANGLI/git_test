@@ -20,6 +20,6 @@ Route::group([
 
     $router->get('/weixin/information/{open_id}','WeixinController@information');      //
 
-    $router->get('/weixin/sendmsg','WeixinController@information');      //
+    $router->get('/weixin/sendmsg','WeixinController@sendMsgView');      //
     $router->post('/weixin/sendmsg','WeixinController@sendMsg');
 });

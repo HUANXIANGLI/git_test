@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Model\WeixinMedia;
 use App\Model\WeixinUser;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
@@ -109,8 +110,10 @@ class WeixinController extends Controller
     /**
      * 私聊
      */
-    public function information(Content $content)
+    public function information(Content $content,$id)
     {
+        $r=WeixinMedia::where(['id'=>$id])->all();
+        var_dump($r);exit;
         return $content
             ->header('微信')
             ->description('私聊')
