@@ -112,6 +112,7 @@ class WeixinController extends Controller
      */
     public function information(Content $content,$id)
     {
+        echo $id;exit;
         $r=WeixinMedia::where(['id'=>$id])->frist();
         var_dump($r);exit;
         return $content
