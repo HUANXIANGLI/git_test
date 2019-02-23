@@ -112,7 +112,7 @@ class WeixinController extends Controller
      */
     public function information(Content $content,$id)
     {
-        $r=WeixinMedia::where(['id'=>$id])->all();
+        $r=WeixinMedia::where(['id'=>$id])->frist();
         var_dump($r);exit;
         return $content
             ->header('微信')
