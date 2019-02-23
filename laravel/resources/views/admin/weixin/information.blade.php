@@ -12,7 +12,7 @@
             <ul class="clearfix" id="J__chatMsgList">
                 <p class="time" align="center" ><span>2019年22月31日 晚上22:30</span></p>
                 <!-- 别人-->
-                <li class="others" style="width:2000px;height: 90px;float:left;">
+                <li class="others" style="width:2000px;height: 100px;float:left;">
                     <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">马云(老子天下第一)</p>
@@ -22,7 +22,7 @@
                     </div>
                 </li>
                 <!--自己-->
-                <li class="me"  style="height: 90px;float: right;">
+                <li class="me"  style="height: 100px;float: right;">
                     <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">Nice奶思</p>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="others" style="width:2000px;height: 90px;float:left;">
+                <li class="others" style="width:2000px;height: 100px;float:left;">
                     <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">马云(老子天下第一)</p>
@@ -41,7 +41,7 @@
                     </div>
                 </li>
                 <!--自己-->
-                <li class="me"  style="height: 90px;float: right;">
+                <li class="me"  style="height: 100px;float: right;">
                     <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">Nice奶思</p>
