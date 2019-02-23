@@ -16,17 +16,17 @@
                     <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">马云(老子天下第一)</p>
-                        <div class="msg">
+                        <div class="msg" style="background-color: blue">
                             hello 各位女士、先生，欢迎大家来到达摩派，进群后记得修改备注哈~~ 名字+公司/职业/机构
                         </div>
                     </div>
                 </li>
                 <!--自己-->
-                <li class="me"  style="height: 100px;float: right;">
+                <li class="me"  style="height: 200px;float: right;">
                     <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">Nice奶思</p>
-                        <div class="msg">
+                        <div class="msg" style="background-color: fuchsia">
                             么么哒，马总发个红包呗！
                         </div>
                     </div>
@@ -35,17 +35,17 @@
                     <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">马云(老子天下第一)</p>
-                        <div class="msg">
+                        <div class="msg" style="background-color: blue">
                             hello 各位女士、先生，欢迎大家来到达摩派，进群后记得修改备注哈~~ 名字+公司/职业/机构
                         </div>
                     </div>
                 </li>
                 <!--自己-->
-                <li class="me"  style="height: 100px;float: right;">
+                <li class="me"  style="height: 200px;float: right;">
                     <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">Nice奶思</p>
-                        <div class="msg">
+                        <div class="msg" style="background-color: fuchsia">
                             么么哒，马总发个红包呗！
                         </div>
                     </div>
