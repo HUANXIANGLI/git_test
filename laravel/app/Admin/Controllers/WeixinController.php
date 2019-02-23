@@ -101,7 +101,7 @@ class WeixinController extends Controller
             return date('Y-m-d H:s:i',$time);
         });
         $grid->actions(function ($actions) {
-            $actions->append('<a href="/weixin/information/"><i class="fa fa-eye">发送信息</i></a>');
+            $actions->append('<a href="/admin/weixin/information/"><i class="fa fa-eye">发送信息</i></a>');
         });
         return $grid;
     }
