@@ -10,6 +10,7 @@
     <div class="wc__slimscroll2">
         <div class="chatMsg-cnt">
             <ul class="clearfix" id="J__chatMsgList">
+                <p align="center"><a href="">﹀</a></p>
                 <p class="time" align="center" ><span>2019年22月31日 晚上22:30</span></p>
                 <!-- 别人-->
                 <li class="others" style="width:2000px;height: 100px;float:left;">
