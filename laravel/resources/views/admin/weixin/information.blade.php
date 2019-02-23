@@ -56,7 +56,7 @@
 </div>
 
 <!-- //微聊底部功能面板 -->
-<div class="wc__footTool-panel" style="align-middle:middle;">
+<div class="wc__footTool-panel" style="align:bottom;">
     <!-- 输入框模块 -->
     <form class="wc__editor-panel wc__borT flexbox" method="post" action="">
         <div class="wrap-editor flex1" style="border: 1px red solid;width:1000px;float: left;"><div class="editor J__wcEditor" contenteditable="true"></div></div>
