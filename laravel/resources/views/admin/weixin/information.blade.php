@@ -5,15 +5,62 @@
     <title>聊天页面</title>
 </head>
 <body>
+<!-- //微聊消息上墙面板 -->
+<div class="wc__chatMsg-panel flex1">
+    <div class="wc__slimscroll2">
+        <div class="chatMsg-cnt">
+            <ul class="clearfix" id="J__chatMsgList">
+                <p class="time" align="center" ><span>2019年22月31日 晚上22:30</span></p>
+                <!-- 别人-->
+                <li class="others" style="width:2000px;height: 90px;float:left;">
+                    <div><img src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
+                    <div class="content">
+                        <p class="author">马云(老子天下第一)</p>
+                        <div class="msg">
+                            hello 各位女士、先生，欢迎大家来到达摩派，进群后记得修改备注哈~~ 名字+公司/职业/机构
+                        </div>
+                    </div>
+                </li>
+                <!--自己-->
+                <li class="me"  style="height: 90px;float: right;">
+                    <div class="content">
+                        <p class="author">Nice奶思</p>
+                        <div class="msg">
+                            么么哒，马总发个红包呗！
+                        </div>
+                    </div>
+                </li>
+                <li class="others" style="width:2000px;height: 90px;float:left;">
+                    <div class="content">
+                        <p class="author">马云(老子天下第一)</p>
+                        <div class="msg">
+                            hello 各位女士、先生，欢迎大家来到达摩派，进群后记得修改备注哈~~ 名字+公司/职业/机构
+                        </div>
+                    </div>
+                </li>
+                <!--自己-->
+                <li class="me"  style="height: 90px;float: right;">
+                    <div class="content">
+                        <p class="author">Nice奶思</p>
+                        <div class="msg">
+                            么么哒，马总发个红包呗！
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <!-- //微聊底部功能面板 -->
 <div class="wc__footTool-panel">
     <!-- 输入框模块 -->
-    <div class="wc__editor-panel wc__borT flexbox">
-        <div class="wrap-editor flex1"><div class="editor J__wcEditor" contenteditable="true"></div></div>
+    <form class="wc__editor-panel wc__borT flexbox" method="post" action="">
+        <div class="wrap-editor flex1" style="border: 1px red solid;width:1000px;float: left;"><div class="editor J__wcEditor" contenteditable="true"></div></div>
         <i class="btn btn-emotion"></i>
         <i class="btn btn-choose"></i>
-        <button class="btn-submit J__wchatSubmit">发送</button>
-    </div>
+        <div style="float: left;"><button type="submit" style="height:33px;">发送</button></div>
+    </form>
 
     <!-- 表情、选择模块 -->
     <div class="wc__choose-panel wc__borT" style="display: none;">
@@ -26,55 +73,11 @@
                         <div class="pagination-emotion"></div>
                     </div>
                 </div>
-                <div class="emotion__cells-footer" id="J__emotionFootTab">
-                    <ul class="clearfix">
-                        <li class="swiperTmpl cur" tmpl="swiper__tmpl-emotion01"><img src="img/emotion/face01/face-lbl.png" alt=""></li>
-                        <li class="swiperTmpl" tmpl="swiper__tmpl-emotion02"><img src="img/emotion/face02/face-lbl.gif" alt=""></li>
-                        <li class="swiperTmpl" tmpl="swiper__tmpl-emotion03"><img src="img/emotion/face03/face-lbl.gif" alt=""></li>
-                        <li class="swiperTmpl" tmpl="swiper__tmpl-emotion04"><img src="img/emotion/face04/face-lbl.gif" alt=""></li>
-                        <li class="swiperTmpl" tmpl="swiper__tmpl-emotion05"><img src="img/emotion/face05/face-lbl.gif" alt=""></li>
-                        <li class="swiperTmpl" tmpl="swiper__tmpl-emotion06"><img src="img/emotion/face06/face-lbl.gif" alt=""></li>
-                        <li class="swiperTmplSet"><img src="img/wchat/icon__emotion-set.png" alt=""></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- 选择区域 -->
-        <div class="wrap-choose" style="display: none;">
-            <div class="choose__cells">
-                <ul class="clearfix">
-                    <li><a class="J__wchatZp" href="javascript:;"><span class="img"><img src="img/wchat/icon__choose-zp.png" /><input type="file" accept="image/*" /></span><em>照片</em></a></li>
-                    <li><a class="J__wchatSp" href="javascript:;"><span class="img"><img src="img/wchat/icon__choose-sp.png" /><input type="file" accept="video/*" /></span><em>视频</em></a></li>
-                    <li><a class="J__wchatHb" href="javascript:;"><span class="img"><img src="img/wchat/icon__choose-hb.png" /></span><em>红包</em></a></li>
-                    <li><a class="J__wchatSc" href="javascript:;"><span class="img"><img src="img/wchat/icon__choose-sc.png" /></span><em>我的收藏</em></a></li>
-                    <li><a class="J__wchatWj" href="javascript:;"><span class="img"><img src="img/wchat/icon__choose-wj.png" /></span><em>文件</em></a></li>
-                </ul>
             </div>
         </div>
     </div>
 </div>
-<div class="wc__choosePanel-tmpl">
-    <!-- //红包模板.begin -->
-    <div id="J__popupTmpl-Hongbao" style="display:none;">
-        <div class="wc__popupTmpl tmpl-hongbao">
-            <i class="wc-xclose"></i>
-            <ul class="clearfix">
-                <li class="item flexbox">
-                    <label class="txt">总金额</label><input class="ipt-txt flex1" type="tel" name="hbAmount" placeholder="0.00" /><em class="unit">元</em>
-                </li>
-                <li class="item flexbox">
-                    <label class="txt">红包个数</label><input class="ipt-txt flex1" type="tel" name="hbNum" placeholder="填写个数" /><em class="unit">个</em>
-                </li>
-                <li class="tips">在线人数共<em class="memNum">186</em>人</li>
-                <li class="item item-area">
-                    <textarea class="describe" name="content" placeholder="恭喜发财，大吉大利"></textarea>
-                </li>
-                <li class="amountTotal">￥<em class="num">0.00</em></li>
-            </ul>
-        </div>
-    </div>
-    <!-- //红包模板.end -->
-</div>
+
 </body>
 </html>
 <script>
@@ -113,6 +116,114 @@
                 left: that.position().left + parseInt(that.css("marginLeft")) + (_other ? 0 : that.outerWidth() - $(".wc__chatTapMenu").outerWidth()),
                 top: that.position().top - $(".wc__chatTapMenu").outerHeight() - 8
             });
+        }
+    });
+
+    // ...表情、选择区切换
+    $(".wc__editor-panel").on("click", ".btn", function(){
+        var that = $(this);
+        $(".wc__choose-panel").show();
+        if (that.hasClass("btn-emotion")) {
+            $(".wc__choose-panel .wrap-emotion").show();
+            $(".wc__choose-panel .wrap-choose").hide();
+            // 初始化swiper表情
+            !emotionSwiper && $("#J__emotionFootTab ul li.cur").trigger("click");
+        } else if (that.hasClass("btn-choose")) {
+            $(".wc__choose-panel .wrap-emotion").hide();
+            $(".wc__choose-panel .wrap-choose").show();
+        }
+        wchat_ToBottom();
+    });
+
+    // ...处理编辑器信息
+    var $editor = $(".J__wcEditor"), _editor = $editor[0];
+    function surrounds(){
+        setTimeout(function () { //chrome
+            var sel = window.getSelection();
+            var anchorNode = sel.anchorNode;
+            if (!anchorNode) return;
+            if (sel.anchorNode === _editor ||
+                    (sel.anchorNode.nodeType === 3 && sel.anchorNode.parentNode === _editor)) {
+
+                var range = sel.getRangeAt(0);
+                var p = document.createElement("p");
+                range.surroundContents(p);
+                range.selectNodeContents(p);
+                range.insertNode(document.createElement("br")); //chrome
+                sel.collapse(p, 0);
+
+                (function clearBr() {
+                    var elems = [].slice.call(_editor.children);
+                    for (var i = 0, len = elems.length; i < len; i++) {
+                        var el = elems[i];
+                        if (el.tagName.toLowerCase() == "br") {
+                            _editor.removeChild(el);
+                        }
+                    }
+                    elems.length = 0;
+                })();
+            }
+        }, 10);
+    }
+    // 格式化编辑器包含标签
+    _editor.addEventListener("click", function () {
+        //$(".wc__choose-panel").hide();
+    }, true);
+    _editor.addEventListener("focus", function(){
+        surrounds();
+    }, true);
+    _editor.addEventListener("input", function(){
+        surrounds();
+    }, false);
+    // 点击表情
+    $("#J__swiperEmotion").on("click", ".face-list span img", function(){
+        var that = $(this), range;
+
+        if(that.hasClass("face")){ //小表情
+            var img = that[0].cloneNode(true);
+            _editor.focus();
+            _editor.blur(); //输入表情时禁止输入法
+
+            setTimeout(function(){
+                if(document.selection && document.selection.createRange){
+                    document.selection.createRange().pasteHTML(img);
+                }else if(window.getSelection && window.getSelection().getRangeAt){
+                    range = window.getSelection().getRangeAt(0);
+                    range.insertNode(img);
+                    range.collapse(false);
+
+                    var sel = window.getSelection();
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                }
+            }, 10);
+        }else if(that.hasClass("del")){ //删除
+            _editor.focus();
+            _editor.blur(); //输入表情时禁止输入法
+
+            setTimeout(function(){
+                range = window.getSelection().getRangeAt(0);
+                range.collapse(false);
+
+                var sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+                document.execCommand("delete");
+            }, 10);
+        } else if(that.hasClass("lg-face")){ //大表情
+            var _img = that.parent().html();
+            var _tpl = [
+                '<li class="me">\
+                    <div class="content">\
+                        <p class="author">Nice奶思</p>\
+                        <div class="msg lgface">'+ _img + '</div>\
+                </div>\
+                <a class="avatar" href="微聊(好友主页).html"><img src="img/uimg/u__chat-img14.jpg" /></a>\
+            </li>'
+            ].join("");
+            $chatMsgList.append(_tpl);
+
+            wchat_ToBottom();
         }
     });
 </script>
