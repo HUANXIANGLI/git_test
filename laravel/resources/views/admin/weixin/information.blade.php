@@ -23,6 +23,7 @@
                 </li>
                 <!--自己-->
                 <li class="me"  style="height: 90px;float: right;">
+                    <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">Nice奶思</p>
                         <div class="msg">
@@ -31,6 +32,7 @@
                     </div>
                 </li>
                 <li class="others" style="width:2000px;height: 90px;float:left;">
+                    <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">马云(老子天下第一)</p>
                         <div class="msg">
@@ -40,6 +42,7 @@
                 </li>
                 <!--自己-->
                 <li class="me"  style="height: 90px;float: right;">
+                    <div><img style="width:50px;height:50px;" src="{{env('IMG_URL')}}form_test/0mnJruzhTpc1B5d.jpg" alt=""></div>
                     <div class="content">
                         <p class="author">Nice奶思</p>
                         <div class="msg">
