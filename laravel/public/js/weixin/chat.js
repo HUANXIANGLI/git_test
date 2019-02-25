@@ -31,7 +31,7 @@ setInterval(function(){
 $("#send_msg_btn").click(function(e){
     e.preventDefault();
     var send_msg = $("#send_msg").val().trim();
-    var msg_str="<li class='others' style='width:2000px;height: 100px;float: right'> <div></div><div class='content'><p class='author'>" +
+    var msg_str="<li class='others' style='width:2000px;height: 100px;' align='center'> <div></div><div class='content'><p class='author'>" +
         "</p><div class='msg'>" + send_msg+
         "</div></div></li>";
 
