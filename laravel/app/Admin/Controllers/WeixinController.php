@@ -2,6 +2,8 @@
 
 namespace App\Admin\Controllers;
 
+use App\Model\WeixinChat;
+use App\Model\WeixinMaterial;
 use App\Model\WeixinMedia;
 use App\Model\WeixinUser;
 use App\Http\Controllers\Controller;
@@ -89,7 +91,9 @@ class WeixinController extends Controller
 
         $grid->id('Id');
         $grid->uid('Uid');
-        $grid->openid('Openid');
+        $grid->openid('Openid')->display(function($openid){
+            return '<a href="/admin/information?openid='.$openid.'">'.$openid.'</a>';
+        });
         $grid->add_time('Add time')->display(function($time){
             return date('Y-m-d H:s:i',$time);
         });
@@ -101,24 +105,53 @@ class WeixinController extends Controller
         $grid->subscribe_time('Subscribe time')->display(function($time){
             return date('Y-m-d H:s:i',$time);
         });
-        $grid->actions(function ($actions) {
-            $actions->append('<a href="/admin/weixin/information/"><i class="fa fa-eye">发送信息</i></a>');
-        });
         return $grid;
     }
 
     /**
      * 私聊
      */
-    public function information(Content $content,$id)
+    public function information(Content $content)
     {
-        echo $id;exit;
-        $r=WeixinMedia::where(['id'=>$id])->frist();
-        var_dump($r);exit;
+        $openid = $_GET['openid'];
+        //echo $id;exit;
+        //$msg=WeixinUser::where(['id'=>$id])->first();
+        $data=[
+            //'msg'=>$msg
+               'openid'=>$openid
+        ];
         return $content
             ->header('微信')
             ->description('私聊')
-            ->body(view('admin.weixin.information'));
+            ->body(view('admin.weixin.information',$data));
+    }
+
+    /**
+     * 微信客服聊天
+     */
+    public function getChatMsg()
+    {
+        $openid = $_GET['openid'];  //用户openid
+        $pos = $_GET['pos'];        //上次聊天位置
+        $msg = WeixinChat::where(['openid'=>$openid])->where('id','>',$pos)->first();
+        $res = WeixinUser::where(['openid'=>$openid])->first();
+        $msg['ctime']=[$msg['ctime'],date('Y-m-d H:i:s')];
+        if($msg){
+            $response = [
+                'errno' => 0,
+                'data'  =>$msg->toArray(),
+                'res'=>$res->toArray()
+            ];
+
+        }else{
+            $response = [
+                'errno' => 50001,
+                'msg'   => '服务器异常，请联系管理员'
+            ];
+        }
+
+        die( json_encode($response));
+
     }
 
 

@@ -18,7 +18,8 @@ Route::group([
     $router->resource('/wxmedia',WeixinMediaController::class);
     $router->resource('/material',WeixinMaterialController::class);
 
-    $router->get('/information/{id}','WeixinController@information');      //
+    $router->get('/information','WeixinController@information');      //
+    $router->get('/chat','WeixinController@getChatMsg');      //
 
     $router->get('/weixin/sendmsg','WeixinController@sendMsgView');      //
     $router->post('/weixin/sendmsg','WeixinController@sendMsg');

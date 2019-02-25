@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Weixin;
 
+use App\Model\WeixinChat;
 use App\Model\WeixinMaterial;
 use App\Model\WeixinMedia;
 use App\Model\WeixinUser;
@@ -51,6 +52,16 @@ class WeixinController extends Controller
                 $msg = $xml->Content;
                 $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. $msg. date('Y-m-d H:i:s') .']]></Content></xml>';
                 echo $xml_response;
+
+                //写入数据库
+                $data = [
+                    'openid' => $openid,
+                    'type'=>0,
+                    'text'=>$msg,
+                    'ctime'=>time()
+                ];
+
+                WeixinChat::insertGetId($data);
             }elseif($xml->MsgType=='image'){       //用户发送图片信息
                 //视业务需求是否需要下载保存图片
                 if(1){  //下载图片素材
