@@ -114,7 +114,7 @@ class WeixinController extends Controller
     public function information(Content $content)
     {
         $openid = $_GET['openid'];
-        //echo $id;exit;
+        //echo $openid;exit;
         //$msg=WeixinUser::where(['id'=>$id])->first();
         $data=[
             //'msg'=>$msg
@@ -135,7 +135,7 @@ class WeixinController extends Controller
         $pos = $_GET['pos'];        //上次聊天位置
         $msg = WeixinChat::where(['openid'=>$openid])->where('id','>',$pos)->first();
         $res = WeixinUser::where(['openid'=>$openid])->first();
-        $msg['ctime']=[$msg['ctime'],date('Y-m-d H:i:s')];
+        //$msg['ctime']=[$msg['ctime'],date('Y-m-d H:i:s')];
         if($msg){
             $response = [
                 'errno' => 0,

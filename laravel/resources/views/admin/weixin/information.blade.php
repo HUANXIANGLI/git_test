@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>聊天页面</title>
+    <meta name="csrf-token" content="{{csrf_token()}}">
 </head>
 <body>
 <!-- //微聊消息上墙面板 -->
@@ -20,14 +21,14 @@
 
 <!-- //微聊底部功能面板 -->
 <div class="wc__footTool-panel" align="bottom">
+    {{csrf_field()}}
     <input type="hidden" value="1" id="msg_pos">
     <!-- 输入框模块 -->
-    <form class="wc__editor-panel wc__borT flexbox">
+    <form action="" class="form-inline">
         <input type="hidden" value="{{$openid}}" id="openid">
-        <div style="float: right;"><button style="height:32px;" id="send_msg_btn">发送</button></div>
-        <div class="wrap-editor flex1" style="width:1000px;float: right;"><div class="editor J__wcEditor" style="border:1px black solid" contenteditable="true" id="send_msg"></div></div>
-        <i class="btn btn-emotion"></i>
-        <i class="btn btn-choose"></i>
+        <input type="hidden" value="1" id="msg_pos">
+        <textarea name="" id="send_msg" cols="100" rows="5"></textarea>
+        <button class="btn btn-info" id="send_msg_btn">Send</button>
     </form>
 
     <!-- 表情、选择模块 -->
@@ -48,3 +49,5 @@
 
 </body>
 </html>
+<script src="{{URL::asset('/js/weixin/chat.js')}}"></script>
+<script src="{{URL::asset('/js/jquery-1.12.4.min.js')}}"></script>
