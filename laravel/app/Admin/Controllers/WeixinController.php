@@ -180,6 +180,15 @@ class WeixinController extends Controller
         // echo '</pre>';
 
         if ($response_arr['errcode'] == 0) {
+            //写入数据库
+            $data = [
+                'openid' => $openid,
+                'type'=>1,
+                'text'=>$text,
+                'ctime'=>time()
+            ];
+
+            WeixinChat::insertGetId($data);
             $response = [
                 'errno' => 0
             ];
