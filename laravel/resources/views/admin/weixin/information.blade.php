@@ -18,17 +18,17 @@
         </div>
     </div>
 </div>
-
+<hr>
 <!-- //微聊底部功能面板 -->
 <div class="wc__footTool-panel" align="bottom">
     {{csrf_field()}}
     <input type="hidden" value="1" id="msg_pos">
     <!-- 输入框模块 -->
-    <form action="" class="form-inline">
+    <form action="" class="form-inline" align="center">
         <input type="hidden" value="{{$openid}}" id="openid">
         <input type="hidden" value="1" id="msg_pos">
         <textarea name="" id="send_msg" cols="100" rows="5"></textarea>
-        <button class="btn btn-info" id="send_msg_btn">Send</button>
+        <button class="btn btn-info" id="send_msg_btn">发送</button>
     </form>
 
     <!-- 表情、选择模块 -->

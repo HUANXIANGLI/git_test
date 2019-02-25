@@ -39,9 +39,6 @@ setInterval(function(){
 $("#send_msg_btn").click(function(e){
     e.preventDefault();
     var send_msg = $("#send_msg").val().trim();
-    var msg_str="<li class='others' style='width:2000px;height: 100px;' align='center'> <div></div><div class='content'><p class='author'>" +
-        "</p><div class='msg'>客服:" + send_msg+
-        "</div></div></li>";
 
     $.ajax({
         headers: {
@@ -55,6 +52,5 @@ $("#send_msg_btn").click(function(e){
         }
     });
 
-    $("#J__chatMsgList").append(msg_str);
     $("#send_msg").val('');
 });
