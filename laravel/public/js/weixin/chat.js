@@ -40,14 +40,10 @@ $("#send_msg_btn").click(function(e){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         url     :   '/admin/textMsg?openid=' + openid + '&text=' + send_msg,
-        type    :   'post',
+        type    :   'get',
         dataType:   'json',
         success :   function(d){
-            if(d.errno==0){     //服务器响应正常
 
-            }else{
-
-            }
         }
     });
 

@@ -155,8 +155,8 @@ class WeixinController extends Controller
     }
 
     public function textMsg(){
-        $openid = $_POST['openid'];
-        $text = $_POST['text'];
+        $openid = $_GET['openid'];
+        $text = $_GET['text'];
         $access_token = $this->getWXAccessToken();
         $url = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='.$access_token;
         //var_dump($url);exit;
