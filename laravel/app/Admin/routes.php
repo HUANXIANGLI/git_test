@@ -20,6 +20,7 @@ Route::group([
 
     $router->get('/information','WeixinController@information');      //
     $router->get('/chat','WeixinController@getChatMsg');      //
+    $router->get('/textMsg','WeixinController@textMsg');      //
 
     $router->get('/weixin/sendmsg','WeixinController@sendMsgView');      //
     $router->post('/weixin/sendmsg','WeixinController@sendMsg');

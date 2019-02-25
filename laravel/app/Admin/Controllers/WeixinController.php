@@ -135,7 +135,7 @@ class WeixinController extends Controller
         $pos = $_GET['pos'];        //上次聊天位置
         $msg = WeixinChat::where(['openid'=>$openid])->where('id','>',$pos)->first();
         $res = WeixinUser::where(['openid'=>$openid])->first();
-        //$msg['ctime']=[$msg['ctime'],date('Y-m-d H:i:s')];
+        $msg['ctime']=date('Y-m-d H:i:s');
         if($msg){
             $response = [
                 'errno' => 0,
@@ -154,6 +154,43 @@ class WeixinController extends Controller
 
     }
 
+    public function textMsg(){
+        $openid = $_GET['openid'];
+        $text = $_GET['text'];
+        $access_token = $this->getWXAccessToken();
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token='.$access_token;
+        //var_dump($url);exit;
+        $client = new GuzzleHttp\Client(['base_url' => $url]);
+        $param = [
+            "touser"=>$openid,
+            "msgtype"=>"text",
+            "text"=>
+            [
+                "content"=>$text
+            ]
+        ];
+        ///var_dump($param);exit;
+        $r = $client->Request('POST', $url, [
+            'body' => json_encode($param, JSON_UNESCAPED_UNICODE)
+        ]);
+        //var_dump($r);exit;
+        $response_arr = json_decode($r->getBody(), true);
+        //echo '<pre>';
+        //print_r($response_arr);
+        // echo '</pre>';
+
+        if ($response_arr['errcode'] == 0) {
+            $response = [
+                'errno' => 0
+            ];
+        } else {
+            $response = [
+                'errno' => 50001,
+                'msg'   => '服务器异常，请联系管理员'
+            ];
+
+        }
+    }
 
     /**
      * Make a show builder.
