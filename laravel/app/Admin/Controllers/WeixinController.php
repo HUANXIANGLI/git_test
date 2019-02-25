@@ -158,7 +158,7 @@ class WeixinController extends Controller
         $openid = $_GET['openid'];
         $text = $_GET['text'];
         $access_token = $this->getWXAccessToken();
-        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token='.$access_token;
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='.$access_token;
         //var_dump($url);exit;
         $client = new GuzzleHttp\Client(['base_url' => $url]);
         $param = [
