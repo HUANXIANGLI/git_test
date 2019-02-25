@@ -7,7 +7,7 @@
 </head>
 <body>
 <!-- //微聊消息上墙面板 -->
-<div class="wc__chatMsg-panel flex1" style="border: 1px red solid;">
+<div class="wc__chatMsg-panel flex1" style="border: 2px red solid;">
     <div class="wc__slimscroll2">
         <div class="chatMsg-cnt">
             <ul class="clearfix" id="J__chatMsgList">
@@ -15,38 +15,22 @@
 
 
             </ul>
-        </div>
-    </div>
-</div>
-<hr>
-<!-- //微聊底部功能面板 -->
-<div class="wc__footTool-panel" align="bottom">
-    {{csrf_field()}}
-    <input type="hidden" value="1" id="msg_pos">
-    <!-- 输入框模块 -->
-    <form action="" class="form-inline" align="center">
-        <input type="hidden" value="{{$openid}}" id="openid">
-        <input type="hidden" value="1" id="msg_pos">
-        <textarea name="" id="send_msg" cols="100" rows="5"></textarea>
-        <button class="btn btn-info" id="send_msg_btn">发送</button>
-    </form>
-
-    <!-- 表情、选择模块 -->
-    <div class="wc__choose-panel wc__borT" style="display: none;">
-        <!-- 表情区域 -->
-        <div class="wrap-emotion" style="display: none;">
-            <div class="emotion__cells flexbox flex__direction-column">
-                <div class="emotion__cells-swiper flex1" id="J__swiperEmotion">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper"></div>
-                        <div class="pagination-emotion"></div>
-                    </div>
-                </div>
+            <!-- //微聊底部功能面板 -->
+            <div class="wc__footTool-panel" align="bottom">
+                {{csrf_field()}}
+                <input type="hidden" value="1" id="msg_pos">
+                <!-- 输入框模块 -->
+                <form action="" class="form-inline" align="right">
+                    <input type="hidden" value="{{$openid}}" id="openid">
+                    <input type="hidden" value="1" id="msg_pos">
+                    <textarea name="" id="send_msg" cols="100" rows="5"></textarea>
+                    <button class="btn btn-info" id="send_msg_btn">发送</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
+<hr>
 </body>
 </html>
 <script src="{{URL::asset('/js/weixin/chat.js')}}"></script>
