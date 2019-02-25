@@ -11,6 +11,7 @@ setInterval(function(){
         dataType:   'json',
         success :   function(d){
             if(d.errno==0){     //服务器响应正常
+                console.log(d);
                 //数据填充
                 if(d.data.type==0){
                     var msg_str="<p class='time' align='center'><span>"+d.data.ctime+
