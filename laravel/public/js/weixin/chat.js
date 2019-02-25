@@ -12,13 +12,13 @@ setInterval(function(){
         success :   function(d){
             if(d.errno==0){     //服务器响应正常
                 //数据填充
-                if(d.data.type=0){
+                if(d.data.type==0){
                     var msg_str="<p class='time' align='center'><span>"+d.data.ctime+
                         "</span></p><li class='others' style='width:2000px;height: 100px;' align='left'> <div><img style='width:50px;height:50px;' src='"+ d.res.headimgurl +
                         "' alt=''></div><div class='content'><p class='author'>" + d.res.nickname+
                         "</p><div class='msg'>" + d.data.text+
                         "</div></div></li>";
-                }else if(d.data.type=1){
+                }else if(d.data.type==1){
                     var msg_str="<li class='others' style='width:2000px;height: 100px;' align='center'> <div></div><div class='content'><p class='author'>" +
                         "</p><div class='msg'>客服:" + d.data.text+
                         "</div></div></li>";
