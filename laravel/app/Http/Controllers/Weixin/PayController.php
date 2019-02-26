@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class PayController extends Controller
 {
     public $weixin_unifiedorder_url='https://api.mch.weixin.qq.com/pay/unifiedorder';
-    public $weixin_notify_url='http://shop.comcto.com/weixin/pay/notice';                 //支付通知回调
+    public $weixin_notify_url='http://ig.anjingdehua.cn/weixin/pay/notice';                 //支付通知回调
 
 
     public function test(){
