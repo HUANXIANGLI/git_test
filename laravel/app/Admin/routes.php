@@ -17,10 +17,10 @@ Route::group([
     $router->resource('/wxuser',WeixinController::class);
     $router->resource('/wxmedia',WeixinMediaController::class);
     $router->resource('/material',WeixinMaterialController::class);
-                
-    $router->get('/information','WeixinController@information');      //
-    $router->get('/chat','WeixinController@getChatMsg');      //
-    $router->get('/textMsg','WeixinController@textMsg');      //
+
+    $router->get('/information','WeixinController@information');      //展示页面
+    $router->get('/chat','WeixinController@getChatMsg');      //定时刷新
+    $router->get('/textMsg','WeixinController@textMsg');      //添加进入
 
     $router->get('/weixin/sendmsg','WeixinController@sendMsgView');      //
     $router->post('/weixin/sendmsg','WeixinController@sendMsg');
