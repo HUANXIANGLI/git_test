@@ -50,7 +50,7 @@ Route::any('/goodsDetails/{goods_id}','Goods\GoodsController@goodsDetails')->mid
 Route::any('/cartList','Cart\CartController@cartList')->middleware('check.login.token');
 
 //购物车添加1
-Route::any('/cartAdd/{goods_id}','Cart\CartController@cartAdd')->middleware('check.login.token');
+Route::any('/cartAdd/{goods_id}','Cart\CartContr    oller@cartAdd')->middleware('check.login.token');
 //购物车添加2
 Route::any('/cartAdd2','Cart\CartController@cartAdd2')->middleware('check.login.token');
 
