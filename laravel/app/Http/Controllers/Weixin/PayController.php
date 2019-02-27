@@ -54,8 +54,7 @@ class PayController extends Controller
   */
         $order_data = $order_info;
         $order_data['pay_status']=1;
-
-        WeixinPay::insertGetId($order_data);
+        
         Redis::set('order_id',$res['o_name']);
 
         include_once('phpqrcode/phpqrcode.php');
