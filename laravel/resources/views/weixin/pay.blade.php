@@ -1,7 +1,7 @@
 @extends('layout.goods')
 @section('title') {{$title}}    @endsection
 @section('content')
-<img src="http://ig.anjingdehua.cn/{{$file_name}}">
+<img src="http://ig.anjingdehua.cn/public/{{$file_name}}">
 {{csrf_field()}}
 
 <script src="{{URL::asset('/js/jquery-1.12.4.min.js')}}"></script>
