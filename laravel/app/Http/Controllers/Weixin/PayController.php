@@ -77,11 +77,11 @@ class PayController extends Controller
     public function payselect(){
         // echo $_GET['order_id'];die;
         $order_id = Redis::get('order_id');
-        $res = WeixinPay::where(['out_trade_no'=>$order_id])->first();
+        $res = OrderModel::where(['o_name'=>$order_id])->first();
 
         $res = json_encode($res);
         $res = \GuzzleHttp\json_decode($res,true);
-        if($res['pay_status']==2){
+        if($res['status']==2){
             Redis::del('order_id');
             return json_encode(
                 ['status'=>1000,
