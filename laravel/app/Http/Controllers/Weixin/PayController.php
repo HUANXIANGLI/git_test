@@ -65,9 +65,10 @@ class PayController extends Controller
         $file_name='picture/'.$data.'.png';
         \QRcode::png($url,$file_name,'H','5','1');
         $data=[
-            'title'=>'微信支付页面'
+            'title'=>'微信支付页面',
+            'file_name'=>$file_name
         ];
-        return view('weixin.pay',['file_name'=>$file_name],$data);
+        return view('weixin.pay',$data);
         //echo '<pre>';print_r($data);echo '</pre>';
 
         //将 code_url 返回给前端，前端生成 支付二维码
