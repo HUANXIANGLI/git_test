@@ -85,15 +85,11 @@ class PayController extends Controller
             );
         }else{
             return json_encode(
-                ['status'=>1000,
-                    'msg'=>  '支付成功'
+                ['status'=>1,
+                    'msg'=>  '暂未支付'
                 ]
             );
         }
-    }
-
-    public function paysuccess(){
-        return view('pay.paysuccess');
     }
 
     protected function ToXml(){
@@ -205,7 +201,7 @@ class PayController extends Controller
 
             if($sign){       //签名验证成功
                 //TODO 逻辑处理  订单状态更新
-
+                WeixinPay::where(['out_trade_no'=>$order_id])->update(['pay_status'=>2]);
             }else{
                 //TODO 验签失败
                 echo '验签失败，IP: '.$_SERVER['REMOTE_ADDR'];
