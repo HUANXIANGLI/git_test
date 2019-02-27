@@ -17,6 +17,7 @@
                     window.location.href='/paysuccess';
                 }else{
                     console.log(1);
+                    alert(msg.msg);
                 }
             }
         })
