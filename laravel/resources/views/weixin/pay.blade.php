@@ -20,7 +20,7 @@
                     alert(msg.msg);
                     //window.location.href='';
                 }else{
-                    console.log(msg.msg);
+                    console.log(1);
                 }
             }
         })
