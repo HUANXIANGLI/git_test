@@ -61,7 +61,7 @@ class PayController extends Controller
         include_once('phpqrcode/phpqrcode.php');
         $url=$data->code_url;
 echo $url;
-        $data=rand(11111,99999) . rand(2222,9999);
+        //$data=rand(11111,99999) . rand(2222,9999);
         $file_name='picture/123.png';
         \QRcode::png($url,$file_name,'H','5','1');
         echo '<img src="'.$file_name.'">';die;
