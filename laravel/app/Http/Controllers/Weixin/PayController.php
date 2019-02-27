@@ -57,7 +57,7 @@ class PayController extends Controller
 
         \QRcode::png($url,$file_name,'H','5','1');
 
-        echo '<img src="'.$file_name.'">';die;
+        echo '<img src="http://ig.anjingdehua.cn/'.$file_name.'">';die;
 
 //        die;
         //echo '<pre>';print_r($data);echo '</pre>';
