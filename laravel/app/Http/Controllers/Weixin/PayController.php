@@ -44,7 +44,7 @@ class PayController extends Controller
 
         $data =  simplexml_load_string($rs);
 
-        var_dump($data);echo '<hr>';
+        //var_dump($data);echo '<hr>';
         /*
         echo 'return_code: '.$data->return_code;echo '<br>';
 		echo 'return_msg: '.$data->return_msg;echo '<br>';
@@ -61,6 +61,8 @@ class PayController extends Controller
 
         include_once('phpqrcode/phpqrcode.php');
         $url=$data->code_url;
+        echo $url;
+        echo '<hr>';
 var_dump($url);exit;
         //$data=rand(11111,99999) . rand(2222,9999);
         $file_name='picture/123.png';
