@@ -30,6 +30,10 @@ class PayController extends Controller
             'notify_url'    => $this->weixin_notify_url,        //通知回调地址
             'trade_type'    => 'NATIVE'                         // 交易类型
         ];
+        $order_data = $order_info;
+        $order_data['pay_status']=1;
+
+        Redis::set('order_id',$res['o_name']);
 
         $this->values = [];
         $this->values = $order_info;
@@ -53,18 +57,15 @@ class PayController extends Controller
 		echo 'trade_type: '.$data->trade_type;echo '<br>';
         echo 'code_url: '.$data->code_url;echo '<br>';
   */
-        $order_data = $order_info;
-        $order_data['pay_status']=1;
 
-        Redis::set('order_id',$res['o_name']);
 
         include_once('phpqrcode/phpqrcode.php');
         $url=$data->code_url;
-echo $url;
+//echo $url;
         //$data=rand(11111,99999) . rand(2222,9999);
         $file_name='picture/123.png';
         \QRcode::png($url,$file_name,'H','5','1');
-        echo '<img src="'.$file_name.'">';die;
+        //echo '<img src="'.$file_name.'">';die;
         $data=[
             'title'=>'微信支付页面',
             'file_name'=>$file_name
