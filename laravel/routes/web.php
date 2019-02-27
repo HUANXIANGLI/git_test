@@ -106,5 +106,6 @@ Route::get('/weixin/material/upload','Weixin\WeixinController@upMaterial');     
 Route::post('/weixin/material','Weixin\WeixinController@materialTest');     //创建菜单
 
 //微信支付
-Route::get('/weixin/pay/test','Weixin\PayController@test');     //微信支付测试
+Route::get('/weixin/pay','Weixin\PayController@test');     //微信支付测试
 Route::post('/weixin/pay/notice','Weixin\PayController@notice');     //微信支付通知回调
+

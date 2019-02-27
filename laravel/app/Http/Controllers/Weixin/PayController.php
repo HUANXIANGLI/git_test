@@ -53,12 +53,14 @@ class PayController extends Controller
         $url=$data->code_url;
         //picture
         //$file_name=false;
-        $file_name='pricture/abc.png';
-
+        $data=rand(11111,99999) . rand(2222,9999);
+        $file_name='picture/'.$data.'.pag';
+        var_dump($file_name);
+        die;
         \QRcode::png($url,$file_name,'H','5','1');
 
         echo '<img src="http://ig.anjingdehua.cn/'.$file_name.'">';die;
-
+        return view();
 //        die;
         //echo '<pre>';print_r($data);echo '</pre>';
 
