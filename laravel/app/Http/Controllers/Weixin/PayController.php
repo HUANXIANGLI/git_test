@@ -54,12 +54,12 @@ class PayController extends Controller
   */
         $order_data = $order_info;
         $order_data['pay_status']=1;
-        
+
         Redis::set('order_id',$res['o_name']);
 
         include_once('phpqrcode/phpqrcode.php');
         $url=$data->code_url;
-
+        var_dump($url);exit;
         $data=rand(11111,99999) . rand(2222,9999);
         $file_name='picture/'.$data.'.png';
         \QRcode::png($url,$file_name,'H','5','1');
