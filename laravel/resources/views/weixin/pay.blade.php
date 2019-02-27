@@ -14,10 +14,10 @@
             dataType:   'json',
             success :   function(msg) {
                 if(msg.status==1000){
-                    window.location.href='/paysuccess';
-                }else{
-                    console.log(1);
                     alert(msg.msg);
+                    //window.location.href='';
+                }else{
+                    console.log(msg.msg);
                 }
             }
         })

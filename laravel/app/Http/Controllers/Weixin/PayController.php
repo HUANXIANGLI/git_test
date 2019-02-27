@@ -85,8 +85,8 @@ class PayController extends Controller
             );
         }else{
             return json_encode(
-                ['status'=>1,
-                    'msg'=>  '暂未支付'
+                ['status'=>1000,
+                    'msg'=>  '支付成功'
                 ]
             );
         }
