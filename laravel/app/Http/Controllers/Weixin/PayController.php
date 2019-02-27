@@ -50,7 +50,7 @@ class PayController extends Controller
         ///echo 'code_url: '.$data->code_url;echo '<br>';
 
         include_once('phpqrcode/phpqrcode.php');
-        $url=$data->code_url;
+        ///$url=$data->code_url;
         //picture
         //$file_name=false;
         $data=rand(11111,99999) . rand(2222,9999);
