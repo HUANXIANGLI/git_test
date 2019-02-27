@@ -52,10 +52,11 @@ class PayController extends Controller
         include_once('phpqrcode/phpqrcode.php');
         $url=$data->code_url;
         //picture
-        $file_name=false;
-        //$file_name='picture/';
+        //$file_name=false;
+        $file_name='picture/';
 
-        \QRcode::png($url,false,'H','5','1');die;
+        \QRcode::png($url,$file_name,'H','5','1');
+        die;
 
 //        die;
         //echo '<pre>';print_r($data);echo '</pre>';
