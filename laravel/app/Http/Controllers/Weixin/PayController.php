@@ -14,9 +14,8 @@ class PayController extends Controller
     public $weixin_notify_url='http://ig.anjingdehua.cn/weixin/pay/notice';                 //支付通知回调
 
 
-    public function test(){
+    public function test($o_id){
         $total_fee=1;                      //用户要支付的总金额
-        $o_id=$_GET['o_id'];
         $res=OrderModel::where(['o_id'=>$o_id])->first();
         $order_info = [
             'appid'         =>  env('WEIXIN_APPID_0'),      //微信支付绑定的服务号的APPID
