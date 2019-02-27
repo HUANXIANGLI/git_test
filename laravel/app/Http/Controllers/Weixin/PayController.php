@@ -55,7 +55,7 @@ class PayController extends Controller
         $file_name=false;
         //$file_name='picture/';
 
-        \QRcode::png($url,$file_name,'H','5','1');die;
+        \QRcode::png($url,false,'H','5','1');die;
 
 //        die;
         //echo '<pre>';print_r($data);echo '</pre>';
