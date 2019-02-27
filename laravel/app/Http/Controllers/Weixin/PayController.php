@@ -58,7 +58,7 @@ class PayController extends Controller
 
         Redis::set('order_id',$res['o_name']);
 
-        include_once('/phpqrcode/phpqrcode.php');
+        include_once('phpqrcode/phpqrcode.php');
         $url=$data->code_url;
 
         $data=rand(11111,99999) . rand(2222,9999);
