@@ -44,7 +44,7 @@ class PayController extends Controller
 
         $data =  simplexml_load_string($rs);
 
-        //var_dump($data);echo '<hr>';
+        var_dump($data);echo '<hr>';
         /*
         echo 'return_code: '.$data->return_code;echo '<br>';
 		echo 'return_msg: '.$data->return_msg;echo '<br>';
