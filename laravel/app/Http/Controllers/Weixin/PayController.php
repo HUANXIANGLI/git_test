@@ -17,6 +17,7 @@ class PayController extends Controller
     public function test($o_id){
         $total_fee=1;                      //用户要支付的总金额
         $res=OrderModel::where(['o_id'=>$o_id])->first();
+        print_r($res);exit;
         $order_info = [
             'appid'         =>  env('WEIXIN_APPID_0'),      //微信支付绑定的服务号的APPID
             'mch_id'        =>  env('WEIXIN_MCH_ID'),       // 商户ID
@@ -59,7 +60,7 @@ class PayController extends Controller
 
         include_once('phpqrcode/phpqrcode.php');
         $url=$data->code_url;
-        print_r($url);exit;
+
         $data=rand(11111,99999) . rand(2222,9999);
         $file_name='picture/'.$data.'.png';
         \QRcode::png($url,$file_name,'H','5','1');
