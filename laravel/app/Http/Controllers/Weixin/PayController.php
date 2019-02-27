@@ -47,13 +47,13 @@ class PayController extends Controller
 //		echo 'result_code: '.$data->result_code;echo '<br>';
 //		echo 'prepay_id: '.$data->prepay_id;echo '<br>';
 //		echo 'trade_type: '.$data->trade_type;echo '<br>';
-        echo 'code_url: '.$data->code_url;echo '<br>';
+        ///echo 'code_url: '.$data->code_url;echo '<br>';
 
         include_once('phpqrcode/phpqrcode.php');
         $url=$data->code_url;
         //picture
         //$file_name=false;
-        $file_name='picture/';
+        $file_name='picture/abc.png';
 
         \QRcode::png($url,$file_name,'H','5','1');
         die;
