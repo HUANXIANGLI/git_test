@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Weixin;
 
 use App\Model\OrderModel;
+use App\Model\WeixinPay;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redis;
 
 class PayController extends Controller
 {
@@ -48,23 +50,50 @@ class PayController extends Controller
 //		echo 'prepay_id: '.$data->prepay_id;echo '<br>';
 //		echo 'trade_type: '.$data->trade_type;echo '<br>';
         ///echo 'code_url: '.$data->code_url;echo '<br>';
+        $order_data = $order_info;
+        $order_data['pay_status']=1;
+
+        WeixinPay::insertGetId($order_data);
+        Redis::set('order_id',$order_id);
 
         include_once('phpqrcode/phpqrcode.php');
-        ///$url=$data->code_url;
-        //picture
-        //$file_name=false;
+        $url=$data->code_url;
+
         $data=rand(11111,99999) . rand(2222,9999);
         $file_name='picture/'.$data.'.pag';
-        var_dump($file_name);
-        die;
         \QRcode::png($url,$file_name,'H','5','1');
 
-        echo '<img src="http://ig.anjingdehua.cn/'.$file_name.'">';die;
-        return view();
-//        die;
+        return view('weixin.pay',['file_name'=>$file_name]);
         //echo '<pre>';print_r($data);echo '</pre>';
 
         //将 code_url 返回给前端，前端生成 支付二维码
+    }
+
+    public function payselect(){
+        // echo $_GET['order_id'];die;
+        $order_id = Redis::get('order_id');
+        $res = WeixinPay::where(['out_trade_no'=>$order_id])->first();
+
+        $res = json_encode($res);
+        $res = \GuzzleHttp\json_decode($res,true);
+        if($res['pay_status']==2){
+            Redis::del('order_id');
+            return json_encode(
+                ['status'=>1000,
+                    'msg'=>'支付成功'
+                ]
+            );
+        }else{
+            return json_encode(
+                ['status'=>1,
+                    'msg'=>  '暂未支付'
+                ]
+            );
+        }
+    }
+
+    public function paysuccess(){
+        return view('pay.paysuccess');
     }
 
     protected function ToXml(){
@@ -161,6 +190,7 @@ class PayController extends Controller
      */
     public function notice()
     {
+        $order_id = Redis::get('order_id');
         $data = file_get_contents("php://input");
 
         //记录日志
