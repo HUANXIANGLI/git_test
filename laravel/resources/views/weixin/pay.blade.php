@@ -1,3 +1,6 @@
+@extends('layout.goods')
+@section('title') {{$title}}    @endsection
+@section('content')
 <img src="/{{$file_name}}">
 {{csrf_field()}}
 
@@ -27,3 +30,4 @@
 
 
 </script>
+@endsection

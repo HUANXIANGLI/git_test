@@ -16,15 +16,15 @@ class PayController extends Controller
 
     public function test(){
         $total_fee=1;                      //用户要支付的总金额
-        $order_id=OrderModel::generateOrderSN();
-
+        $o_id=$_GET['o_id'];
+        $res=OrderModel::where(['o_id'=>$o_id])->first();
         $order_info = [
             'appid'         =>  env('WEIXIN_APPID_0'),      //微信支付绑定的服务号的APPID
             'mch_id'        =>  env('WEIXIN_MCH_ID'),       // 商户ID
             'nonce_str'     => str_random(16),             // 随机字符串
             'sign_type'     => 'MD5',
             'body'          => '测试订单-'.mt_rand(1111,9999) . str_random(6),
-            'out_trade_no'  => $order_id,                       //本地订单号
+            'out_trade_no'  => $res['o_name'],                       //本地订单号
             'total_fee'     => $total_fee,
             'spbill_create_ip'  => $_SERVER['REMOTE_ADDR'],     //客户端IP
             'notify_url'    => $this->weixin_notify_url,        //通知回调地址
@@ -39,22 +39,25 @@ class PayController extends Controller
         $rs = $this->postXmlCurl($xml, $this->weixin_unifiedorder_url, $useCert = false, $second = 30);
 
         $data =  simplexml_load_string($rs);
-//        //var_dump($data);echo '<hr>';
-//        echo 'return_code: '.$data->return_code;echo '<br>';
-//		echo 'return_msg: '.$data->return_msg;echo '<br>';
-//		echo 'appid: '.$data->appid;echo '<br>';
-//		echo 'mch_id: '.$data->mch_id;echo '<br>';
-//		echo 'nonce_str: '.$data->nonce_str;echo '<br>';
-//		echo 'sign: '.$data->sign;echo '<br>';
-//		echo 'result_code: '.$data->result_code;echo '<br>';
-//		echo 'prepay_id: '.$data->prepay_id;echo '<br>';
-//		echo 'trade_type: '.$data->trade_type;echo '<br>';
-        ///echo 'code_url: '.$data->code_url;echo '<br>';
+
+        //var_dump($data);echo '<hr>';
+        /*
+        echo 'return_code: '.$data->return_code;echo '<br>';
+		echo 'return_msg: '.$data->return_msg;echo '<br>';
+		echo 'appid: '.$data->appid;echo '<br>';
+		echo 'mch_id: '.$data->mch_id;echo '<br>';
+		echo 'nonce_str: '.$data->nonce_str;echo '<br>';
+		echo 'sign: '.$data->sign;echo '<br>';
+		echo 'result_code: '.$data->result_code;echo '<br>';
+		echo 'prepay_id: '.$data->prepay_id;echo '<br>';
+		echo 'trade_type: '.$data->trade_type;echo '<br>';
+        echo 'code_url: '.$data->code_url;echo '<br>';
+  */
         $order_data = $order_info;
         $order_data['pay_status']=1;
 
         WeixinPay::insertGetId($order_data);
-        Redis::set('order_id',$order_id);
+        Redis::set('order_id',$res['o_name']);
 
         include_once('phpqrcode/phpqrcode.php');
         $url=$data->code_url;
@@ -62,8 +65,11 @@ class PayController extends Controller
         $data=rand(11111,99999) . rand(2222,9999);
         $file_name='picture/'.$data.'.png';
         \QRcode::png($url,$file_name,'H','5','1');
-
-        return view('weixin.pay',['file_name'=>$file_name]);
+        $data=[
+            'title'=>'微信支付页面',
+            'file_name'=>$file_name
+        ];
+        return view('weixin.pay',$data);
         //echo '<pre>';print_r($data);echo '</pre>';
 
         //将 code_url 返回给前端，前端生成 支付二维码
@@ -201,7 +207,7 @@ class PayController extends Controller
 
             if($sign){       //签名验证成功
                 //TODO 逻辑处理  订单状态更新
-                WeixinPay::where(['out_trade_no'=>$order_id])->update(['pay_status'=>2]);
+                OrderModel::where(['o_name'=>$order_id])->update(['status'=>2]);
             }else{
                 //TODO 验签失败
                 echo '验签失败，IP: '.$_SERVER['REMOTE_ADDR'];

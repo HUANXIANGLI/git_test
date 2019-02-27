@@ -64,7 +64,7 @@ class OrderController extends Controller
             $goods_info['c_num'] = $v['c_num'];
             $list[] = $goods_info;
 
-            //计算订单价格 = 商品数量 * 单价
+            //计算订单价格 = 商品数量 * 单价\
             $order_amount += $goods_info['goods_price'] * $v['c_num'];
         }
 
