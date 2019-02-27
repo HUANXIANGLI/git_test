@@ -62,7 +62,7 @@ class PayController extends Controller
         $url=$data->code_url;
 
         $data=rand(11111,99999) . rand(2222,9999);
-        $file_name='picture/'.$data.'.png';
+        $file_name='picture/123.png';
         \QRcode::png($url,$file_name,'H','5','1');
         $data=[
             'title'=>'微信支付页面',
