@@ -60,7 +60,7 @@ class PayController extends Controller
         $url=$data->code_url;
 
         $data=rand(11111,99999) . rand(2222,9999);
-        $file_name='picture/'.$data.'.pag';
+        $file_name='picture/'.$data.'.png';
         \QRcode::png($url,$file_name,'H','5','1');
 
         return view('weixin.pay',['file_name'=>$file_name]);
