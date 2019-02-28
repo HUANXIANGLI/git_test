@@ -565,7 +565,10 @@ class WeixinController extends Controller
     }
 
     public function getCode(){
-        return view('weixin.onesweep');
+        $data=[
+            'title'=>'微信二维码登录'
+        ];
+        return view('weixin.onesweep',$data);
     }
 
 }

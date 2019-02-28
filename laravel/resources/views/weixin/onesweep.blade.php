@@ -1,14 +1,8 @@
 <?php
+
 ?>
-
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
+@extends('layout.goods')
+@section('title') {{$title}}    @endsection
+@section('content')
     <a href="">微信二维码登录</a>
-</body>
-</html>
+@endsection
