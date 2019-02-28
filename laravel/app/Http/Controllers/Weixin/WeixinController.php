@@ -133,7 +133,9 @@ class WeixinController extends Controller
 
     }
 
-    // 文本消息
+    /**
+     * 文本消息
+     */
     public function click($openid,$from){
 
         $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$from.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '您好, 现在时间'. date('Y-m-d H:i:s') .']]></Content></xml>';
@@ -477,7 +479,10 @@ class WeixinController extends Controller
 
     }
 
-    //上传至微信永久素材
+    /**
+     * 上传至微信永久素材
+     * @param $file_path
+     */
     public function upMaterialTest($file_path)
     {
         $url = 'https://api.weixin.qq.com/cgi-bin/material/add_material?access_token='.$this->getWXAccessToken().'&type=image';
@@ -499,12 +504,18 @@ class WeixinController extends Controller
 
     }
 
-    //添加永久素材页面
+    /**
+     * 添加永久素材页面
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function WxMediaShow(){
         return view('weixin.wxshow');
     }
 
-    //素材添加
+    /**
+     * 素材添加
+     * @param Request $request
+     */
     public function WxMediaAdd(Request $request){
         //echo '<pre>';print_r($_POST);echo '</pre>';echo '<hr>';
         //echo '<pre>';print_r($_FILES);echo '</pre>';echo '<hr>';
@@ -547,6 +558,14 @@ class WeixinController extends Controller
 
         //上传至微信永久素材
         $this->upMaterialTest($save_file_path);
+    }
+
+    public function getAdd(){
+
+    }
+
+    public function getCode(){
+        return view('weixin.onesweep');
     }
 
 }
