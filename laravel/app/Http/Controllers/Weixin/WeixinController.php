@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Weixin;
 
+use App\Model\userModel;
 use App\Model\WeixinChat;
 use App\Model\WeixinMaterial;
 use App\Model\WeixinMedia;
@@ -560,15 +561,66 @@ class WeixinController extends Controller
         $this->upMaterialTest($save_file_path);
     }
 
-    public function getAdd(){
-
-    }
 
     public function getCode(){
+        $code = $_GET['code'];          // code
+
+        //2 用code换取access_token 请求接口
+
+        $token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxe24f70961302b5a5&secret=0f121743ff20a3a454e4a12aeecef4be&code='.$code.'&grant_type=authorization_code';
+        $token_json = file_get_contents($token_url);
+        $token_arr = json_decode($token_json,true);
+        echo '<hr>';
+        echo '<pre>';print_r($token_arr);echo '</pre>';
+
+        $access_token = $token_arr['access_token'];
+        $openid = $token_arr['openid'];
+
+        // 3 携带token  获取用户信息
+        $user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
+        $user_json = file_get_contents($user_info_url);
+
+        $user_arr = json_decode($user_json,true);
+        $unionid=$user_arr['unionid'];
+        $name=$user_arr['nickname'];
+        $res = WeixinUser::where(['unionid' => $unionid])->first();
+
+        if($res){
+            return '登陆成功';
+        }else {
+            $data = [
+                'u_name' => $name
+            ];
+            $id = userModel::insertGetId($data);
+            if ($id) {
+                //var_dump($id);
+                $arr = [
+                    'uid' => $id,
+                    'openid' => $user_arr['openid'],
+                    'add_time' => time(),
+                    'nickname' => $name,
+                    'sex' => $user_arr['sex'],
+                    'headimgurl' => $user_arr['headimgurl'],
+                    'subscribe_time' => time(),
+                    'unionid' => $unionid
+                ];
+                $res = WeixinUser::insertGetId($arr);
+                // var_dump($r);
+                if ($res) {
+                    return '成功';
+                } else {
+                    return '失败';
+                }
+            } else {
+                return '第一条数据入库失败';
+            }
+            }
+    }
+
+    public function codeAdd(){
         $data=[
             'title'=>'微信二维码登录'
         ];
         return view('weixin.onesweep',$data);
     }
-
 }

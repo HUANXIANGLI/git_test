@@ -112,3 +112,5 @@ Route::any('/payShow','Weixin\PayController@payselect');     //二维码展示
 
 
 Route::any('/getCode','Weixin\WeixinController@getCode');
+
+Route::any('/codeAdd','Weixin\WeixinController@codeAdd');
