@@ -108,5 +108,7 @@ Route::post('/weixin/material','Weixin\WeixinController@materialTest');     //�
 //微信支付
 Route::get('/weixin/pay/{o_id}','Weixin\PayController@test');     //微信支付测试
 Route::post('/weixin/pay/notice','Weixin\PayController@notice');     //微信支付通知回调
+Route::any('/payShow','Weixin\PayController@payselect');     //二维码展示
 
-Route::any('/payShow','Weixin\PayController@payselect');
+
+Route::any('/getCode','Weixin\WeixinController@getCode');
