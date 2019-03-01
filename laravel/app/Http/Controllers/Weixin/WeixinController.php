@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redis;
 use GuzzleHttp;
 use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Scalar\String_;
 
 class WeixinController extends Controller
 {
@@ -632,11 +633,29 @@ class WeixinController extends Controller
     }
 
     /**
+     * [getJsapiTicket description] 获取jsapi_ticket
+     * @return [type] [description]
+     */
+    public function getJsapiTicket() {
+        $access_token=$this->getWXAccessToken();
+        $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=".$access_token."&type=jsapi";
+
+        $data = json_decode(file_get_contents($url),true);
+
+        //记录缓存
+        $jsapi_ticket = $data['jsapi_ticket'];
+        return $jsapi_ticket;
+    }
+    /**
      * 微信jssdk 调试
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function jssdkTest()
     {
+        //access_token
+        //jsapi_ticket
+        $jsapi_ticket=$this->getJsapiTicket();
+    var_dump($jsapi_ticket);exit;
         //计算签名
         $jsconfig = [
             'appid' => env('WEIXIN_APPID'),        //APPID
