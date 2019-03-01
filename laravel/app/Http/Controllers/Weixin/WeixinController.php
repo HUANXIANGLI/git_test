@@ -634,6 +634,7 @@ class WeixinController extends Controller
     }
 
     /**
+     * 获取jsapi_ticket
      * [getJsapiTicket description]
      * @return [type] [description]
      */
@@ -659,18 +660,15 @@ class WeixinController extends Controller
      */
     public function jssdkTest()
     {
-        $data=$this->wxJsConfigSign();
-        $time=time();
-        var_dump($time);
-        var_dump($data);exit;
         //计算签名
         $jsconfig = [
-            'appid' => env('WEIXIN_APPID'),        //APPID
+            'appid' => env('WEIXIN_APPID_0'),        //APPID
             'timestamp' => time(),
             'noncestr'    => str_random(10),
-            'sign'      => $this->wxJsConfigSign()
+            //'sign'      => $this->wxJsConfigSign()
         ];
-
+        $sign = $this->wxJsConfigSign($jsconfig);
+        $jsconfig['sign'] = $sign;
         $data = [
             'title'=>'JSSDK',
             'jsconfig'  => $jsconfig
@@ -678,13 +676,17 @@ class WeixinController extends Controller
         return view('weixin.jssdk',$data);
     }
 
+
     /**
      * 计算JSSDK sign
      */
-    public function wxJsConfigSign()
+    public function wxJsConfigSign($param)
     {
-
-        $sign = str_random(15);
-        return $sign;
+        $current_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];     //当前调用 jsapi的 url
+        $ticket = $this->getJsapiTicket();
+        $str =  'jsapi_ticket='.$ticket.'&noncestr='.$param['noncestr']. '&timestamp='. $param['timestamp']. '&url='.$current_url;
+        $signature=sha1($str);
+        return $signature;
     }
+
 }
