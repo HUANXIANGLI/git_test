@@ -17,6 +17,7 @@ use PhpParser\Node\Scalar\String_;
 class WeixinController extends Controller
 {
     protected $redis_weixin_access_token = 'str:weixin_access_token';     //微信 access_token
+    protected $redis_weixin_jsapi_ticket = 'str:weixin_jsapi_ticket';     //微信  获取jsapi_ticket
 
     /**
      * 首次接入
@@ -633,7 +634,7 @@ class WeixinController extends Controller
     }
 
     /**
-     * [getJsapiTicket description] 获取jsapi_ticket
+     * [getJsapiTicket description]
      * @return [type] [description]
      */
     public function getJsapiTicket() {
@@ -644,6 +645,8 @@ class WeixinController extends Controller
 
         //记录缓存
         $jsapi_ticket = $data['jsapi_ticket'];
+        Redis::set($this->redis_weixin_jsapi_ticket,$jsapi_ticket);
+        Redis::setTimeout($this->redis_weixin_jsapi_ticket,7200);
         return $jsapi_ticket;
     }
     /**
