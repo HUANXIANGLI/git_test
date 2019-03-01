@@ -84,17 +84,13 @@ Route::any('/buy/{pos}','index\indexController@movieBuy');
 Route::any('/index','index\indexController@index');
 Route::any('/update','index\indexController@update');//考试修改密码
 
-
 //微信
 Route::get('/weixin/valid','Weixin\WeixinController@validToken');
 Route::get('/weixin/valid1','Weixin\WeixinController@validToken1');
 Route::post('/weixin/valid1','Weixin\WeixinController@wxEvent');        //接收微信服务器事件推送
 Route::post('/weixin/valid','Weixin\WeixinController@validToken');
 Route::get('/weixin/create_menu','Weixin\WeixinController@createMenu');
-
-
-//群发
-Route::any('/all','Weixin\WeixinController@vall');
+Route::any('/all','Weixin\WeixinController@vall');                             //群发
 
 
 //添加永久素材页面
@@ -110,7 +106,9 @@ Route::get('/weixin/pay/{o_id}','Weixin\PayController@test');     //微信支付
 Route::post('/weixin/pay/notice','Weixin\PayController@notice');     //微信支付通知回调
 Route::any('/payShow','Weixin\PayController@payselect');     //二维码展示
 
+//微信扫一扫登录
+Route::any('/getCode','Weixin\WeixinController@getCode');           //微信扫一扫添加页面
+Route::any('/codeAdd','Weixin\WeixinController@codeAdd');           //微信展示页面
 
-Route::any('/getCode','Weixin\WeixinController@getCode');
-
-Route::any('/codeAdd','Weixin\WeixinController@codeAdd');
+//微信 JSSDK
+Route::get('/weixin/jssdk/test','Weixin\WeixinController@jssdkTest');       // 测试

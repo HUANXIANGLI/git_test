@@ -561,7 +561,10 @@ class WeixinController extends Controller
         $this->upMaterialTest($save_file_path);
     }
 
-
+    /**
+     * 微信扫一扫登录添加
+     * @return string
+     */
     public function getCode(){
         $code = $_GET['code'];          // code
 
@@ -617,10 +620,45 @@ class WeixinController extends Controller
             }
     }
 
+    /**
+     * 微信扫一扫展示页面
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function codeAdd(){
         $data=[
             'title'=>'微信二维码登录'
         ];
         return view('weixin.onesweep',$data);
+    }
+
+    /**
+     * 微信jssdk 调试
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function jssdkTest()
+    {
+        //计算签名
+        $jsconfig = [
+            'appid' => env('WEIXIN_APPID'),        //APPID
+            'timestamp' => time(),
+            'noncestr'    => str_random(10),
+            'sign'      => $this->wxJsConfigSign()
+        ];
+
+        $data = [
+            'jsconfig'  => $jsconfig
+        ];
+        return view('weixin.jssdk',$data);
+    }
+
+
+    /**
+     * 计算JSSDK sign
+     */
+    public function wxJsConfigSign()
+    {
+
+        $sign = str_random(15);
+        return $sign;
     }
 }

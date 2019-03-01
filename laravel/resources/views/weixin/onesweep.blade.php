@@ -1,7 +1,6 @@
 @extends('layout.goods')
 @section('title') {{$title}}    @endsection
 @section('content')
-    <a href="">微信二维码登录</a>
     <div class="container">
         <h2>微信登录</h2>
         <h3>
