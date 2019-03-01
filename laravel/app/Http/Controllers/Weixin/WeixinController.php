@@ -646,7 +646,7 @@ class WeixinController extends Controller
             $data = json_decode(file_get_contents($url),true);
             var_dump($data);
             //记录缓存
-            $jsapi_ticket = $data['jsapi_ticket'];
+            $jsapi_ticket = $data['ticket'];
             Redis::set($this->redis_weixin_jsapi_ticket,$jsapi_ticket);
             Redis::setTimeout($this->redis_weixin_jsapi_ticket,7200);
         }
