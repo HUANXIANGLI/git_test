@@ -644,7 +644,7 @@ class WeixinController extends Controller
             $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=".$access_token."&type=jsapi";
 
             $data = json_decode(file_get_contents($url),true);
-
+            var_dump($data);
             //记录缓存
             $jsapi_ticket = $data['jsapi_ticket'];
             Redis::set($this->redis_weixin_jsapi_ticket,$jsapi_ticket);
