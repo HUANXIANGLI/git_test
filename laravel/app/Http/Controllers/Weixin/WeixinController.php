@@ -652,18 +652,15 @@ class WeixinController extends Controller
         }
         return $jsapi_ticket;
     }
+
     /**
      * 微信jssdk 调试
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function jssdkTest()
     {
-        //access_token
-        //jsapi_ticket
-//        $access_token=$this->getWXAccessToken();
-//        var_dump($access_token);exit;
-        $jsapi_ticket=$this->getJsapiTicket();
-    var_dump($jsapi_ticket);exit;
+        $data=$this->wxJsConfigSign();
+        var_dump($data);exit;
         //计算签名
         $jsconfig = [
             'appid' => env('WEIXIN_APPID'),        //APPID
@@ -678,7 +675,6 @@ class WeixinController extends Controller
         ];
         return view('weixin.jssdk',$data);
     }
-
 
     /**
      * 计算JSSDK sign
