@@ -646,6 +646,7 @@ class WeixinController extends Controller
         ];
 
         $data = [
+            'title'=>'JSSDK',
             'jsconfig'  => $jsconfig
         ];
         return view('weixin.jssdk',$data);
