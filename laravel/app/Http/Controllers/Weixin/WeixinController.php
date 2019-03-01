@@ -642,7 +642,7 @@ class WeixinController extends Controller
         $access_token=$this->getWXAccessToken();
         $jsapi_ticket = Redis::get($this->redis_weixin_jsapi_ticket);
         if(!$jsapi_ticket){
-            $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=".$access_token."&type=jsapi";
+            $url = "http://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=".$access_token."&type=jsapi";
 
             $data = json_decode(file_get_contents($url),true);
             var_dump($data);
