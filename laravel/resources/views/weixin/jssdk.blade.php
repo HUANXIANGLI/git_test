@@ -8,6 +8,7 @@
 @endsection
 @section('footer')
     @parent
+    <script src="{{URL::asset('/js/weixin/chat.js')}}"></script>
     <script src="https://res2.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 
     <script>
