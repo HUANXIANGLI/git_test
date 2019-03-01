@@ -660,10 +660,10 @@ class WeixinController extends Controller
     {
         //access_token
         //jsapi_ticket
-        $access_token=$this->getWXAccessToken();
-        var_dump($access_token);exit;
-        //$jsapi_ticket=$this->getJsapiTicket();
-    //var_dump($jsapi_ticket);exit;
+//        $access_token=$this->getWXAccessToken();
+//        var_dump($access_token);exit;
+        $jsapi_ticket=$this->getJsapiTicket();
+    var_dump($jsapi_ticket);exit;
         //计算签名
         $jsconfig = [
             'appid' => env('WEIXIN_APPID'),        //APPID
