@@ -20,5 +20,13 @@
             signature: "{{$jsconfig['sign']}}",// 必填，签名
             jsApiList: ['chooseImage','uploadImage','getLocalImgData','startRecord'] // 必填，需要使用的JS接口列表
         });
+
+        wx.ready(function(){
+            alert(111);
+        });
+
+        wx.error(function(res){
+            alert(222);
+        });
     </script>
 @endsection
