@@ -660,6 +660,8 @@ class WeixinController extends Controller
     public function jssdkTest()
     {
         $data=$this->wxJsConfigSign();
+        $time=time();
+        var_dump($time);
         var_dump($data);exit;
         //计算签名
         $jsconfig = [
