@@ -112,3 +112,10 @@ Route::any('/codeAdd','Weixin\WeixinController@codeAdd');           //微信展�
 
 //微信 JSSDK
 Route::get('/weixin/jssdk/test','Weixin\WeixinController@jssdkTest');       // 测试
+
+//api接口
+Route::post('/api/decrypt','Api\ApiController@decrypt');         //对称解密
+Route::get('/api/encrypt','Api\ApiController@encrypt');          //对称加密
+
+Route::post('/api/decryption','Api\ApiController@decryption');         //非对称解密
+Route::get('/api/encryption','Api\ApiController@encryption');          //非对称加密

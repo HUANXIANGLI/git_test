@@ -13,7 +13,10 @@ class PayController extends Controller
     public $weixin_unifiedorder_url='https://api.mch.weixin.qq.com/pay/unifiedorder';
     public $weixin_notify_url='http://ig.anjingdehua.cn/weixin/pay/notice';                 //支付通知回调
 
-
+    /**
+     * @param $o_id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function test($o_id){
         $total_fee=1;                      //用户要支付的总金额
         $res=OrderModel::where(['o_id'=>$o_id])->first();
@@ -46,19 +49,17 @@ class PayController extends Controller
 
         //var_dump($data);echo '<hr>';
         /*
-        echo 'return_code: '.$data->return_code;echo '<br>';
-		echo 'return_msg: '.$data->return_msg;echo '<br>';
-		echo 'appid: '.$data->appid;echo '<br>';
-		echo 'mch_id: '.$data->mch_id;echo '<br>';
-		echo 'nonce_str: '.$data->nonce_str;echo '<br>';
-		echo 'sign: '.$data->sign;echo '<br>';
-		echo 'result_code: '.$data->result_code;echo '<br>';
-		echo 'prepay_id: '.$data->prepay_id;echo '<br>';
-		echo 'trade_type: '.$data->trade_type;echo '<br>';
-        echo 'code_url: '.$data->code_url;echo '<br>';
-  */
-
-
+            echo 'return_code: '.$data->return_code;echo '<br>';
+            echo 'return_msg: '.$data->return_msg;echo '<br>';
+            echo 'appid: '.$data->appid;echo '<br>';
+            echo 'mch_id: '.$data->mch_id;echo '<br>';
+            echo 'nonce_str: '.$data->nonce_str;echo '<br>';
+            echo 'sign: '.$data->sign;echo '<br>';
+            echo 'result_code: '.$data->result_code;echo '<br>';
+            echo 'prepay_id: '.$data->prepay_id;echo '<br>';
+            echo 'trade_type: '.$data->trade_type;echo '<br>';
+            echo 'code_url: '.$data->code_url;echo '<br>';
+        */
         include_once('phpqrcode/phpqrcode.php');
         $url=$data->code_url;
 
@@ -75,6 +76,9 @@ class PayController extends Controller
         //将 code_url 返回给前端，前端生成 支付二维码
     }
 
+    /**
+     * @return string
+     */
     public function payselect(){
         // echo $_GET['order_id'];die;
         $order_id = Redis::get('order_id');
@@ -98,6 +102,9 @@ class PayController extends Controller
         }
     }
 
+    /**
+     * @return string
+     */
     protected function ToXml(){
         if(!is_array($this->values) ||count($this->values)<=0){
             die("数组数据异常");
@@ -115,7 +122,14 @@ class PayController extends Controller
         $xml.="</xml>";
         return $xml;
     }
-
+    
+    /**
+     * @param $xml
+     * @param $url
+     * @param bool|false $useCert
+     * @param int $second
+     * @return mixed
+     */
     private function postXmlCurl($xml, $url, $useCert = false, $second = 30){
         $ch=curl_init();
         //设置超时
@@ -151,6 +165,9 @@ class PayController extends Controller
         }
     }
 
+    /**
+     * @return string
+     */
     public function SetSign()
     {
         $sign = $this->MakeSign();
@@ -158,6 +175,10 @@ class PayController extends Controller
         return $sign;
     }
 
+    /**
+     * 签名步骤
+     * @return string
+     */
     private function MakeSign(){
         //签名步骤一：按字典序排序参数
         ksort($this->values);
@@ -230,4 +251,7 @@ class PayController extends Controller
         $sign = $this->SetSign();
         return $sign;
     }
+
+
+
 }
