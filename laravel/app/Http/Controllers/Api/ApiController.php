@@ -121,7 +121,7 @@ class ApiController extends Controller
 
     }
 
-    public function decryption(){
+    public function decryption(Request $request){
         $data = $request->input('data');
         $now = $request->input('now');
         $sign = $request->input('sign');
@@ -140,4 +140,7 @@ class ApiController extends Controller
 
     }
 
+    public function test(){
+        return $_POST;
+    }
 }
