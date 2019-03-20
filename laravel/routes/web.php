@@ -14,7 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+/**
+ *
 //后台
 Auth::routes();
 
@@ -120,4 +121,5 @@ Route::get('/api/encrypt','Api\ApiController@encrypt');          //对称加密
 Route::post('/api/decryption','Api\ApiController@decryption');         //非对称解密
 Route::get('/api/encryption','Api\ApiController@encryption');          //非对称加密
 
+ */
 Route::any('/api/test','Api\ApiController@test');          //真机链接
